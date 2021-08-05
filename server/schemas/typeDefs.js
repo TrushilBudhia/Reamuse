@@ -30,7 +30,7 @@ const typeDefs = gql`
     gameId: String!
     score: Int
     highScore: Int
-    highScoreDate: Date
+    highScoreDate: String
     playCount: Int
   }
 
