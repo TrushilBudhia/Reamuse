@@ -37,6 +37,7 @@ const AppNavbar = () => {
                   <Nav.Link as={Link} to='/highscores'>
                     Highscores
                   </Nav.Link>
+                  {/* When the user clicks the logout button, the token is removed and they are logged out */}
                   <Nav.Link onClick={Auth.logout}>Logout</Nav.Link>
                 </>
               ) : (
