@@ -4,52 +4,12 @@ import { Navbar, Nav, Container, Modal, Tab } from 'react-bootstrap';
 import SignUpForm from './SignupForm';
 import LoginForm from './LoginForm';
 import Auth from '../utils/auth';
-import AppModal from './Modal';
 import '../styles/style.css'
 
-const AppNavbar = () => {
+const AppModal = (showModal, setShowModal) => {
   // Set modal display state
-  const [showModal, setShowModal] = useState(false);
-  console.log('showModal', showModal);
-
   return (
     <>
-      <Navbar className='bg-navy' variant='dark' expand='lg'>
-        <Container fluid>
-          <Navbar.Brand as={Link} to='/'>
-            Reamuse
-          </Navbar.Brand>
-          <Navbar.Toggle aria-controls='navbar' />
-          <Navbar.Collapse id='navbar'>
-            <Nav className='ml-auto'>
-              {Auth.loggedIn() ? (
-                <Nav.Link as={Link} to='/dashboard'>
-                  Dashboard
-                </Nav.Link>
-              ) : (
-                <Nav.Link as={Link} to='/'>
-                  Home
-                </Nav.Link>
-              )}
-              {/* If user is logged in show saved books and logout */}
-              {Auth.loggedIn() ? (
-                <>
-                  <Nav.Link as={Link} to='/highscores'>
-                    Highscores
-                  </Nav.Link>
-                  {/* When the user clicks the logout button, the token is removed and they are logged out */}
-                  <Nav.Link onClick={Auth.logout}>Logout</Nav.Link>
-                </>
-              ) : (
-                <Nav.Link onClick={() => setShowModal(true)}>Login/Sign Up</Nav.Link>
-
-              )}
-              {console.log('showModal', showModal)}
-
-            </Nav>
-          </Navbar.Collapse>
-        </Container>
-      </Navbar>
       {/* Set modal data up */}
       <Modal
         size='lg'
@@ -86,4 +46,4 @@ const AppNavbar = () => {
   );
 };
 
-export default AppNavbar;
+export default AppModal;

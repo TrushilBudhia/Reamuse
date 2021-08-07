@@ -1,3 +1,20 @@
+html {
+    background-color: #0d2f4a;
+}
+
 .bg-navy {
-    background-color: #0d244a;
+    background-color: #0d2f4a;
+}
+
+.welcome-page {
+    /* height: 96vh; */
+}
+
+.welcome-paragraph {
+    font-size: 2rem;
+}
+
+.form {
+    margin: 0 auto;
+    width: 50%;
 }
