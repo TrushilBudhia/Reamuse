@@ -5,8 +5,8 @@ import '../styles/style.css'
 const Signup = () => {
   return (
     <>
-      <h1>Signup</h1>
-      <SignupForm />
+      <h1 className='has-text-light'>Signup</h1>
+      <SignupForm classStyle='has-text-light' />
     </>
   );
 };

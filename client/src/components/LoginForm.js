@@ -6,7 +6,7 @@ import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../utils/mutations'
 import '../styles/style.css'
 
-const LoginForm = () => {
+const LoginForm = (classStyle) => {
   const [userFormData, setUserFormData] = useState({ email: '', password: '' });
   const [validated] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
@@ -51,12 +51,12 @@ const LoginForm = () => {
 
   return (
     <>
-      <Form className="form" noValidate validated={validated} onSubmit={handleFormSubmit}>
+      <Form className={`form has-text-dark`} noValidate validated={validated} onSubmit={handleFormSubmit}>
         <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
           Something went wrong with your login credentials!
         </Alert>
         <Form.Group>
-          <Form.Label htmlFor='email'>Email</Form.Label>
+          <Form.Label htmlFor='email' className={classStyle.classStyle}>Email</Form.Label>
           <Form.Control
             type='text'
             placeholder='Your email'
@@ -65,11 +65,11 @@ const LoginForm = () => {
             value={userFormData.email}
             required
           />
-          <Form.Control.Feedback type='invalid'>Email is required!</Form.Control.Feedback>
+          <Form.Control.Feedback type='invalid' className={classStyle.classStyle}>Email is required!</Form.Control.Feedback>
         </Form.Group>
 
         <Form.Group>
-          <Form.Label htmlFor='password'>Password</Form.Label>
+          <Form.Label htmlFor='password' className={classStyle.classStyle}>Password</Form.Label>
           <Form.Control
             type='password'
             placeholder='Your password'
@@ -78,7 +78,7 @@ const LoginForm = () => {
             value={userFormData.password}
             required
           />
-          <Form.Control.Feedback type='invalid'>Password is required!</Form.Control.Feedback>
+          <Form.Control.Feedback type='invalid' className={classStyle.classStyle}>Password is required!</Form.Control.Feedback>
         </Form.Group>
         <button
           className="button-style button-magenta"
