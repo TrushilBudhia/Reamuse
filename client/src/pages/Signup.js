@@ -1,7 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import Auth from '../utils/auth';
-import { useMutation } from '@apollo/client';
+import React from 'react';
 import SignupForm from '../components/SignupForm'
 import '../styles/style.css'
 

@@ -4,7 +4,6 @@ import { Navbar, Nav, Container, Modal, Tab } from 'react-bootstrap';
 import SignUpForm from './SignupForm';
 import LoginForm from './LoginForm';
 import Auth from '../utils/auth';
-import AppModal from './Modal';
 import '../styles/style.css'
 
 const AppNavbar = () => {

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { Form, Button, Alert } from 'react-bootstrap';
+import { Form, Alert } from 'react-bootstrap';
 import Auth from '../utils/auth';
 import { useMutation } from '@apollo/client';
-import { ADD_USER } from '../utils/mutations' 
+import { ADD_USER } from '../utils/mutations'
 
 const SignupForm = () => {
   // set initial form state
@@ -98,12 +98,13 @@ const SignupForm = () => {
           />
           <Form.Control.Feedback type='invalid'>Password is required!</Form.Control.Feedback>
         </Form.Group>
-        <Button
+        <button
+          className="button-style button-magenta"
           disabled={!(userFormData.username && userFormData.email && userFormData.password)}
           type='submit'
           variant='success'>
           Submit
-        </Button>
+        </button>
       </Form>
     </>
   );

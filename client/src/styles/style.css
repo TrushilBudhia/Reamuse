@@ -1,13 +1,20 @@
 html {
-    background-color: #0d2f4a;
+    /* background-color: #0d2f4a; */
 }
 
-.bg-navy {
+body {
     background-color: #0d2f4a;
+    color: #ffffff;
+}
+
+.bg-clear {
+    /* background-color: #0d2f4a; */
+    background-color: transparent;
 }
 
 .welcome-page {
     /* height: 96vh; */
+    z-index: 1;
 }
 
 .welcome-paragraph {
@@ -18,3 +25,35 @@ html {
     margin: 0 auto;
     width: 50%;
 }
+
+.button-style {
+    padding: 0.5rem 4rem;
+    display: inline-block;
+    font-weight: 400;
+    color: #212529;
+    text-align: center;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    user-select: none;
+    background-color: transparent;
+    border: 1px solid transparent;
+    padding: .5rem 4rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: .25rem;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.button-magenta {
+    color: #fff;
+    background-color: #a7326c;
+    border-color: #cc004e;
+}
+
+
+.button-style:hover {
+    color: #fff;
+    background-color: #0069d9;
+    border-color: #0062cc;
+}
+
