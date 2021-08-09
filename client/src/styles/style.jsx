@@ -1,0 +1,148 @@
+import React from 'react'
+import styled from 'styled-components'
+
+
+// MEDIA QUERIES
+const breakpoints = [576, 768, 992, 1200]
+
+const mq = breakpoints.map(
+  bp => `@media (min-width: ${bp}px)`
+)
+
+//  Home Page Styling
+export const ContentContainer = styled.main`
+    background-color: transparent;
+    border-radius: .3rem;
+    color: #ffffff;
+    margin-bottom: 2rem;
+    padding: 2rem 1rem;
+    ${mq[0]} {
+        padding: 4rem 2rem;
+    }
+`
+
+export const WelcomeContainer = styled.div`
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 100%;
+    z-index: 1;
+    ${mq[0]} {
+        max-width: 540px;
+    }
+    ${mq[1]} {
+        max-width: 720px;
+    }
+    ${mq[2]} {
+        max-width: 960px;
+    }
+    ${mq[3]} {
+        max-width:1140px;
+    }
+`
+
+export const WelcomeParagraph = styled.div`
+    font-size: 2rem;
+    margin-bottom: 1rem;
+`
+
+export const Button = styled.button`
+    background-color: transparent;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+    color: #212529; 
+    display: inline-block;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    margin-right: 0.5rem;
+    padding: 0.5rem 4rem;
+    text-align: center;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    user-select: none;
+    vertical-align: middle;
+    -webkit-user-select: none;
+`
+
+export const ButtonMagenta = styled.button`
+    background-color: #a7326c;
+    border: 1px solid #cc004e;
+    border-radius: .25rem;
+    color: #ffffff;
+    display: inline-block;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    margin-right: 0.5rem;
+    padding: 0.5rem 4rem;
+    text-align: center;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    user-select: none;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    &:hover {
+        background-color: #0069d9;
+        border-color: #0062cc;
+        color: #ffffff;
+    }
+`
+
+// FORM STYLING
+export const Form = styled.form`
+    margin: 0 auto;
+    width: 50%;
+`
+
+export const FormGroup = styled.div`
+    margin-bottom: 1rem;    
+`
+
+export const FormLabel = styled.label`
+    display: inline-block;
+    margin-bottom: .5rem;
+`
+
+export const FormControl = styled.div`
+    background-color: #ffffff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    color: #495057;
+    display: block;
+    font-size: 1rem;
+    font-weight: 400;
+    height: calc(1.5em + .75rem + 2px);
+    line-height: 1.5;
+    padding: .375rem .75rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    width: 100%;
+`
+
+export const Alert = styled.div`
+    border: 1px solid transparent;
+    border-radius: .25rem;
+    margin-bottom: 1rem;
+    padding: .75rem 1.25rem;
+    position: relative;
+`
+
+export const AlertError = styled.div`
+    border: 1px solid transparent;
+    border-radius: .25rem;
+    margin-bottom: 1rem;
+    padding: .75rem 1.25rem;
+    position: relative;
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+`
+
+export const LightText = styled.div`
+    color: #ffffff;
+`
+
+export const DarkText = styled.div`
+    color: ##212529;
+`
+
