@@ -17,11 +17,6 @@
     var width, height, largeHeader, canvas, ctx, points, target, animateHeader = true;
     addStyleSheet('canvas#animated-canvas { pointer-events: none; position: fixed; top: 0; z-index: -9999; }');
 
-    let bodySelect = document.querySelector('body');
-    console.log('bodySelect', bodySelect);
-    let checkBody = bodySelect.classList.contains('home');
-    console.log('checkBody', checkBody);
-
     if (document.querySelector('body').classList.contains('home') && window.innerWidth > 1024) {
         initHeader();
         initAnimation();

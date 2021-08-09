@@ -1,15 +1,20 @@
 // see SignupForm.js for comments
 import React, { useState } from 'react';
-import { Form, Alert } from 'react-bootstrap';
+// import { Form, Alert } from 'react-bootstrap';
 import Auth from '../utils/auth';
 import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../utils/mutations'
+import { validateEmail } from '../utils/helpers';
 import '../styles/style.css'
+import { LightText, ButtonMagenta } from '../styles/style.jsx'
 
 const LoginForm = (classStyle) => {
   const [userFormData, setUserFormData] = useState({ email: '', password: '' });
   const [validated] = useState(false);
-  const [showAlert, setShowAlert] = useState(false);
+  // Set state of submitted
+  const [submitted, setSubmitted] = useState(false);
+  // Set state of userExist
+  const [userExist, setUserExist] = useState(false);
   // Setting up mutation
   const [loginUser, { error }] = useMutation(LOGIN_USER);
 
@@ -21,73 +26,97 @@ const LoginForm = (classStyle) => {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
-    // check if form has everything (as per react-bootstrap docs)
+    // Check if form has everything
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
       event.preventDefault();
       event.stopPropagation();
     }
+  console.log('form', form);
 
     try {
       const { data } = await loginUser({
         variables: { ...userFormData },
       });
+      console.log('data', data);
       // Authenticating login with the token
       Auth.login(data.loginUser.token);
+      setUserExist(true);
       if (error) {
-        throw new Error('something went wrong!');
+        console.log('Login error');
+        throw new Error('Something went wrong!');
       }
     } catch (err) {
+      // If the request to retrieve the email from the database fails, setUserExist to false
+      setUserExist(false);
       console.error(err);
-      setShowAlert(true);
     }
 
-    setUserFormData({
-      username: '',
-      email: '',
-      password: '',
-    });
+    if (userExist && validateEmail(userFormData.email) && userFormData.password) {
+      // sets valid to true if all the input fields are valid
+      // Valid being true allows the success message to be displayed
+      setUserFormData({
+        username: '',
+        email: '',
+        password: '',
+      });
+    } else {
+      console.log('incorrect login details');
+    }
+    // Sets submitted to true
+    // Will display any error spans if there are input fields that do not have a value
+    setSubmitted(true);
   };
 
   return (
     <>
-      <Form className={`form has-text-dark`} noValidate validated={validated} onSubmit={handleFormSubmit}>
-        <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
-          Something went wrong with your login credentials!
-        </Alert>
-        <Form.Group>
-          <Form.Label htmlFor='email' className={classStyle.classStyle}>Email</Form.Label>
-          <Form.Control
-            type='text'
-            placeholder='Your email'
-            name='email'
-            onChange={handleInputChange}
-            value={userFormData.email}
-            required
-          />
-          <Form.Control.Feedback type='invalid' className={classStyle.classStyle}>Email is required!</Form.Control.Feedback>
-        </Form.Group>
-
-        <Form.Group>
-          <Form.Label htmlFor='password' className={classStyle.classStyle}>Password</Form.Label>
-          <Form.Control
-            type='password'
-            placeholder='Your password'
-            name='password'
-            onChange={handleInputChange}
-            value={userFormData.password}
-            required
-          />
-          <Form.Control.Feedback type='invalid' className={classStyle.classStyle}>Password is required!</Form.Control.Feedback>
-        </Form.Group>
-        <button
-          className="button-style button-magenta"
-          disabled={!(userFormData.email && userFormData.password)}
-          type='submit'
-          variant='success'>
-          Submit
-        </button>
-      </Form>
+     <form className="form" noValidate validated={validated} onSubmit={handleFormSubmit}>
+        <LightText>
+          <div className="field">
+            <label className="label">Email:</label>
+            <p className="control">
+              <input
+                className="input"
+                id="email-signup"
+                type="email"
+                placeholder="Your email address"
+                name='email'
+                onChange={handleInputChange}
+                value={userFormData.email}
+                required
+              />
+              {!validateEmail(userFormData.email) && submitted && <span id="email-error" className="has-text-danger my-4 is-block">*Please enter a valid email address</span>}
+            </p>
+          </div>
+          <div className="field">
+            <label className="label">Password:</label>
+            <p className="control">
+              <input
+                className="input"
+                id="password-signup"
+                type="password"
+                placeholder="Your password"
+                name='password'
+                onChange={handleInputChange}
+                value={userFormData.password}
+                required
+              />
+            </p>
+          </div>
+          <div className="field">
+            <p className="control">
+            {userFormData.email && userFormData.password && <ButtonMagenta
+                className="button-style button-magenta"
+                disabled={!(userFormData.email && userFormData.password)}
+                type='submit'
+              >
+                Submit
+              </ButtonMagenta>}
+            </p>
+            {!userExist && submitted && <span id="email-error" className="has-text-danger my-4 is-block">*Incorrect email and/or password entered</span>}
+          </div>
+        </LightText>
+      </form>
     </>
   );
 };
