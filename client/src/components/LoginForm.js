@@ -6,9 +6,9 @@ import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../utils/mutations'
 import { validateEmail } from '../utils/helpers';
 import '../styles/style.css'
-import { LightText, ButtonMagenta } from '../styles/style.jsx'
+import { LightText, ButtonMagenta, Error } from '../styles/style.jsx'
 
-const LoginForm = (classStyle) => {
+const LoginForm = () => {
   const [userFormData, setUserFormData] = useState({ email: '', password: '' });
   const [validated] = useState(false);
   // Set state of submitted
@@ -85,7 +85,7 @@ const LoginForm = (classStyle) => {
                 value={userFormData.email}
                 required
               />
-              {!validateEmail(userFormData.email) && submitted && <span id="email-error" className="has-text-danger my-4 is-block">*Please enter a valid email address</span>}
+              {!validateEmail(userFormData.email) && submitted && <Error>*Please enter a valid email address</Error>}
             </p>
           </div>
           <div className="field">
@@ -113,7 +113,7 @@ const LoginForm = (classStyle) => {
                 Submit
               </ButtonMagenta>}
             </p>
-            {!userExist && submitted && <span id="email-error" className="has-text-danger my-4 is-block">*Incorrect email and/or password entered</span>}
+            {!userExist && submitted && <Error>*Incorrect email and/or password entered</Error>}
           </div>
         </LightText>
       </form>
