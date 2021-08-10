@@ -4,6 +4,7 @@ import { useQuery, useMutation } from '@apollo/client';
 import Auth from '../utils/auth';
 import { GET_ME } from '../utils/queries';
 import '../styles/style.css'
+import MapContent from '../components/MapContent'
 import { Header, MapButtons, RegionInfo, Title, TitleHeader, Description, DescriptionInner, Quote } from './Dashboard.styles.jsx'
 
 const Dashboard = () => {
@@ -18,7 +19,7 @@ const Dashboard = () => {
 
     return (
         <Header>
-            <div class="container">
+            <div className="container">
                 <MapButtons>
                     <RegionInfo>
                         <Title>
@@ -40,7 +41,7 @@ const Dashboard = () => {
                         </Description>
                         {/* <ButtonsContent></ButtonsContent> */}
                     </RegionInfo>
-                    {/* <MapContent></MapContent> */}
+                    <MapContent></MapContent>
                 </MapButtons>
             </div>
         </Header>
