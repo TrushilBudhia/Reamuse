@@ -6,6 +6,7 @@ import Navbar from './components/Navbar';
 import Home from './pages/Home';
 // import Signup from './pages/Signup';
 import Login from './pages/Login';
+import Dashboard from './pages/Dashboard';
 
 // Constructing our main GraphQL API endpoint
 const httpLink = createHttpLink({
@@ -42,7 +43,7 @@ function App() {
             <Route exact path='/signup' component={Login} />
             <Route exact path='/login' component={Login} />
             <Route exact path='/loginsignup' component={Login} />
-            {/* <Route exact path='/dashboard' component={Dashboard} /> */}
+            <Route exact path='/dashboard' component={Dashboard} />
             {/* <Route exact path='/highscores' component={Highscores} /> */}
             <Route render={() => <h1 className='display-2'>Wrong page!</h1>} />
           </Switch>

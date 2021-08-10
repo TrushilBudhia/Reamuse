@@ -34,6 +34,7 @@ export const Container = styled.div`
 export const NavbarBrand = styled.div`
     color: #ffffff;
     display: inline-block;
+    font-family: 'Elianto', sans-serif;
     font-size: 1.25rem;
     line-height: inherit;
     margin-right: 1rem;
