@@ -5,9 +5,9 @@ import { useMutation } from '@apollo/client';
 import { ADD_USER } from '../utils/mutations'
 import { validateEmail } from '../utils/helpers';
 import '../styles/style.css'
-import { LightText, ButtonMagenta } from '../styles/style.jsx'
+import { LightText, ButtonMagenta, Error } from '../styles/style.jsx'
 
-const SignupForm = (classStyle) => {
+const SignupForm = () => {
   // Set initial form state
   const [userFormData, setUserFormData] = useState({ username: '', email: '', password: '' });
   // Set state for form validation
@@ -82,7 +82,7 @@ const SignupForm = (classStyle) => {
                 value={userFormData.username}
                 required
               />
-              {submitted && !userFormData.username && <span id="name-error" className="has-text-danger my-4 is-block">*Please enter a valid username</span>}
+              {submitted && !userFormData.username && <Error>*Please enter a valid username</Error>}
             </p>
           </div>
           <div className="field">
@@ -98,7 +98,7 @@ const SignupForm = (classStyle) => {
                 value={userFormData.email}
                 required
               />
-              {submitted && !validateEmail(userFormData.email) && <span id="email-error" className="has-text-danger my-4 is-block">*Please enter a valid email</span>}
+              {submitted && !validateEmail(userFormData.email) && <Error>*Please enter a valid email</Error>}
             </p>
           </div>
           <div className="field">
@@ -114,7 +114,7 @@ const SignupForm = (classStyle) => {
                 value={userFormData.password}
                 required
               />
-              {submitted && !userFormData.password && <span id="password-error" className="has-text-danger my-4 is-block">*Please enter a valid password</span>}
+              {submitted && !userFormData.password && <Error>*Please enter a valid password</Error>}
 
             </p>
           </div>

@@ -15,7 +15,6 @@ const AppNavbar = () => {
           {/* <NavbarToggler aria-controls='navbar'>
             <NavbarTogglerIcon />
           </NavbarToggler> */}
-
           <NavbarCollapse id='navbar'>
             <Nav>
               <Link to='/'>
