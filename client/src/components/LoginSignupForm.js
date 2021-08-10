@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import LoginForm from './LoginForm'
 import SignupForm from './SignupForm'
-import { LightText, ButtonMagenta, Button } from '../styles/style.jsx'
 import { useSpring, animated } from "react-spring";
 import '../styles/style.css'
 
@@ -54,14 +53,13 @@ const LoginSignupForm = () => {
         </animated.button>
       </div>
       <div className="form-group">
-        <animated.form action="" id="loginform" style={loginProps}>
+        <animated.div action="" id="loginform" style={loginProps}>
           <LoginForm />
-        </animated.form>
-        <animated.form action="" id="registerform" style={signupProps}>
+        </animated.div>
+        <animated.div action="" id="registerform" style={signupProps}>
           <SignupForm />
-        </animated.form>
+        </animated.div>
       </div>
-
     </div>
   );
 }

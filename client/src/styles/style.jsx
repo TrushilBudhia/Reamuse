@@ -9,7 +9,93 @@ const mq = breakpoints.map(
   bp => `@media (min-width: ${bp}px)`
 )
 
-//  Home Page Styling
+// Navigation Bar Styling
+export const Navbar = styled.nav`
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    padding: .5rem 1rem;
+`
+
+export const Container = styled.div`
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: 15px;
+    padding-left: 15px;
+    width: 100%;
+`
+
+export const NavbarBrand = styled.div`
+    color: #ffffff;
+    display: inline-block;
+    font-size: 1.25rem;
+    line-height: inherit;
+    margin-right: 1rem;
+    padding-top: .3125rem;
+    padding-bottom: .3125rem;
+    white-space: nowrap;
+    &:hover {
+        color: hsla(0,0%,100%,.75);
+        text-decoration: none;
+    }
+`
+
+export const NavbarToggler = styled.button`
+    background-color: transparent;
+    border: 1px solid transparent;
+    border-color: rgba(255,255,255,.1);
+    border-radius: .25rem;
+    color: rgba(255,255,255,.5);
+    font-size: 1.25rem;
+    line-height: 1;
+    padding: .25rem .75rem;
+`
+
+export const NavbarTogglerIcon = styled.div`
+    background: 50%/100% 100% no-repeat;
+    background-image: url(data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.5%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e);
+    content: "";
+    display: inline-block;
+    height: 1.5em;
+    vertical-align: middle;
+    width: 1.5em;
+`
+
+export const NavbarCollapse = styled.div`
+    display: flex!important;
+    flex-basis: auto;
+    flex-grow: 1;
+    align-items: center;
+`
+
+export const Nav = styled.div`
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    margin-bottom: 0;
+    margin-left: auto;
+    padding-left: 0;
+    ${mq[2]} {
+        flex-direction: row;
+    }
+`
+
+export const NavLink = styled.div`
+    color: hsla(0,0%,100%,.5);
+    display: block;
+    padding: .5rem 1rem;
+    &:hover {
+        color: hsla(0,0%,100%,.75);
+    }
+`
+
+// Home Page Styling
 export const ContentContainer = styled.main`
     background-color: transparent;
     border-radius: .3rem;
@@ -17,7 +103,7 @@ export const ContentContainer = styled.main`
     margin-bottom: 2rem;
     padding: 2rem 1rem;
     ${mq[0]} {
-        padding: 4rem 2rem;
+        padding: 7rem 2rem;
     }
 `
 
@@ -74,6 +160,7 @@ export const ButtonMagenta = styled.button`
     font-size: 1rem;
     font-weight: 400;
     line-height: 1.5;
+    margin-top: 1.1rem;
     margin-right: 0.5rem;
     padding: 0.5rem 4rem;
     text-align: center;
@@ -88,7 +175,7 @@ export const ButtonMagenta = styled.button`
     }
 `
 
-// FORM STYLING
+// Form Styling
 export const Form = styled.form`
     margin: 0 auto;
     width: 50%;

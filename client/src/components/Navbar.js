@@ -1,51 +1,59 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Navbar, Nav, Container} from 'react-bootstrap';
 import Auth from '../utils/auth';
 import '../styles/style.css'
+import { Navbar, Container, NavbarBrand, NavbarToggler, NavbarTogglerIcon, NavbarCollapse, Nav, NavLink } from '../styles/style.jsx';
 
 const AppNavbar = () => {
-  // Set modal display state
-  // const [showModal, setShowModal] = useState(false);
-
   return (
     <>
       <Navbar className='bg-navy' variant='dark' expand='lg'>
         <Container fluid>
-          <Navbar.Brand as={Link} to='/'>
+          <NavbarBrand as={Link} to='/'>
             Reamuse
-          </Navbar.Brand>
-          <Navbar.Toggle aria-controls='navbar' />
-          <Navbar.Collapse id='navbar'>
-            <Nav className='ml-auto'>
-              {Auth.loggedIn() ? (
-                <Nav.Link as={Link} to='/dashboard'>
-                  Dashboard
-                </Nav.Link>
-              ) : (
-                <Nav.Link as={Link} to='/'>
+          </NavbarBrand>
+          {/* <NavbarToggler aria-controls='navbar'>
+            <NavbarTogglerIcon />
+          </NavbarToggler> */}
+
+          <NavbarCollapse id='navbar'>
+            <Nav>
+              <Link to='/'>
+                <NavLink>
                   Home
-                </Nav.Link>
-              )}
-              {/* If user is logged in show saved books and logout */}
+                </NavLink>
+              </Link>
+              {/* If user is logged in show dashboard, highscores and logout */}
               {Auth.loggedIn() ? (
                 <>
-                  <Nav.Link as={Link} to='/highscores'>
-                    Highscores
-                  </Nav.Link>
+                  <Link to='/dashboard'>
+                    <NavLink>
+                      Dashboard
+                    </NavLink>
+                  </Link>
+                  <Link to='/highscores'>
+                    <NavLink>
+                      Highscores
+                    </NavLink>
+                  </Link>
                   {/* When the user clicks the logout button, the token is removed and they are logged out */}
-                  <Nav.Link onClick={Auth.logout}>Logout</Nav.Link>
+                  <Link onClick={Auth.logout}>
+                    <NavLink>
+                      Logout
+                    </NavLink>
+                  </Link>
                 </>
               ) : (
-                <Nav.Link as={Link} to='/loginsignup'>Login/Sign Up</Nav.Link>
-
+                <Link as={Link} to='/login'>
+                  <NavLink>
+                    Login/Sign Up
+                  </NavLink>
+                </Link>
               )}
-
             </Nav>
-          </Navbar.Collapse>
+          </NavbarCollapse>
         </Container>
       </Navbar>
-    
     </>
   );
 };
