@@ -10,7 +10,7 @@ const AppNavbar = () => {
       <Navbar className='bg-navy' variant='dark' expand='lg'>
         <Container fluid>
           <NavbarBrand as={Link} to='/'>
-            Reamuse
+            REAMUSE
           </NavbarBrand>
           {/* <NavbarToggler aria-controls='navbar'>
             <NavbarTogglerIcon />
