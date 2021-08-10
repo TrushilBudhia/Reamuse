@@ -6,6 +6,7 @@ import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
+import Login2 from './pages/Login2';
 // import LoginSignupForm from './components/LoginSignupForm';
 
 // Constructing our main GraphQL API endpoint
@@ -40,7 +41,8 @@ function App() {
           <Navbar />
           <Switch>
             <Route exact path='/' component={Home} />
-            {/* <Route exact path='/signup' component={Signup} /> */}
+            <Route exact path='/signup' component={Login} />
+            <Route exact path='/login' component={Login} />
             <Route exact path='/loginsignup' component={Login} />
             {/* <Route exact path='/loginsignup' component={LoginSignupForm} /> */}
             {/* <Route exact path='/highscores' component={Highscores} /> */}

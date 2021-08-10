@@ -15,7 +15,7 @@ const Home = () => {
           </WelcomeParagraph>
           {!Auth.loggedIn() ? (
             <div>
-              <Link to="/loginsignup">
+              <Link to="/login">
                 <ButtonMagenta>
                   Login / Signup
                 </ButtonMagenta>
