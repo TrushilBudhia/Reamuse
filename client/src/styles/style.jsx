@@ -35,7 +35,7 @@ export const NavbarBrand = styled.div`
     color: #ffffff;
     display: inline-block;
     font-family: 'Elianto', sans-serif;
-    font-size: 1.25rem;
+    font-size: 1.75rem;
     line-height: inherit;
     margin-right: 1rem;
     padding-top: .3125rem;
@@ -128,8 +128,17 @@ export const WelcomeContainer = styled.div`
         max-width:1140px;
     }
 `
+export const WelcomeHeader = styled.div` 
+    font-family: 'Elianto', sans-serif;
+    font-size: 3rem;
+    font-weight: 500;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+    margin-top: 0;
+`
 
 export const WelcomeParagraph = styled.div`
+    font-family: 'Elianto', sans-serif;
     font-size: 2rem;
     margin-bottom: 1rem;
 `
