@@ -14,7 +14,7 @@ export const RegionInfo = styled.div`
 
 export const Title = styled.div`
     margin-bottom: 32px;
-    width: 70%;
+    width: 80%;
 `
 
 export const TitleHeader = styled.div`
@@ -22,6 +22,7 @@ export const TitleHeader = styled.div`
     font-family: 'Gamlangdee', sans-serif;
     font-size: 2.5rem;
     margin: 0px;
+    text-align: center;
 `
 
 export const MapButtons = styled.div`
