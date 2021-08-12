@@ -1,5 +1,12 @@
 import styled from 'styled-components'
 
+// MEDIA QUERIES
+const breakpoints = [576, 768, 992, 1200]
+
+const mq = breakpoints.map(
+  bp => `@media (min-width: ${bp}px)`
+)
+
 export const Header = styled.main`
     margin: auto;
     max-width: 1200px;
@@ -9,12 +16,18 @@ export const Header = styled.main`
 `
 
 export const RegionInfo = styled.div`
-    width: 50%;
+    width: 100%;
+    ${mq[2]} {
+        width: 50%;
+    }
 `
 
 export const Title = styled.div`
     margin-bottom: 32px;
-    width: 80%;
+    width: 100%;
+    ${mq[2]} {
+        width: 80%;
+    }
 `
 
 export const TitleHeader = styled.div`
@@ -33,7 +46,10 @@ export const MapButtons = styled.div`
 
 export const Description = styled.div`
     margin-bottom: 25px;
-    width: 86%;
+    width: 100%;
+    ${mq[2]} {
+        width: 86%;
+    }
 `
 
 export const DescriptionInner = styled.div`

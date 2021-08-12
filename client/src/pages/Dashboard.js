@@ -5,7 +5,8 @@ import Auth from '../utils/auth';
 import { GET_ME } from '../utils/queries';
 import '../styles/style.css'
 import MapContent from '../components/MapContent'
-import { Header, MapButtons, RegionInfo, Title, TitleHeader, Description, DescriptionInner, Quote } from './Dashboard.styles.jsx'
+import ButtonsContent from '../components/ButtonsContent'
+import { Header, MapButtons, RegionInfo, Title, TitleHeader, Description, DescriptionInner, Quote } from '../styles/Dashboard.styles.jsx'
 
 const Dashboard = () => {
     // Setting up useQuery
@@ -39,10 +40,11 @@ const Dashboard = () => {
                                 Help protect the world by overcoming the challenges the space denizens have set!
                             </DescriptionInner>
                         </Description>
-                        {/* <ButtonsContent></ButtonsContent> */}
+
                     </RegionInfo>
                     <MapContent></MapContent>
                 </MapButtons>
+                <ButtonsContent></ButtonsContent>
             </div>
         </Header>
     );

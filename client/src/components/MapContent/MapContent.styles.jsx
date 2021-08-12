@@ -1,12 +1,21 @@
 import styled from 'styled-components'
 
+// MEDIA QUERIES
+const breakpoints = [576, 768, 992, 1200]
+
+const mq = breakpoints.map(
+  bp => `@media (min-width: ${bp}px)`
+)
+
 export const MapContent = styled.div`
     align-items: center;
-    display: flex;
+    display: none;
     max-width: 585px;
+    ${mq[2]} {
+        display: flex;
+    }
 `
 
 export const WorldMap = styled.div`
-    border-radius: 3rem;
     width: 100%;
 `

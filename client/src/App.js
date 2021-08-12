@@ -2,12 +2,14 @@ import React from 'react';
 import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { Provider } from 'react-redux'
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
 // import Signup from './pages/Signup';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 import { LightText, ContentContainer } from './styles/style.jsx'
+import { store } from './store';
 
 // Constructing our main GraphQL API endpoint
 const httpLink = createHttpLink({
@@ -38,22 +40,24 @@ function App() {
     <ApolloProvider client={client}>
       <Router>
         <>
-          <Navbar />
-          <Switch>
-            <Route exact path='/' component={Home} />
-            <Route exact path='/signup' component={Login} />
-            <Route exact path='/login' component={Login} />
-            <Route exact path='/loginsignup' component={Login} />
-            <Route exact path='/dashboard' component={Dashboard} />
-            {/* <Route exact path='/highscores' component={Highscores} /> */}
-            <Route render={() => <h1 className='display-2'>
-              <ContentContainer>
-                <LightText>
-                  Page not found
-                </LightText>
-              </ContentContainer>
-            </h1>} />
-          </Switch>
+          <Provider store={store}>
+            <Navbar />
+            <Switch>
+              <Route exact path='/' component={Home} />
+              <Route exact path='/signup' component={Login} />
+              <Route exact path='/login' component={Login} />
+              <Route exact path='/loginsignup' component={Login} />
+              <Route exact path='/dashboard' component={Dashboard} />
+              {/* <Route exact path='/highscores' component={Highscores} /> */}
+              <Route render={() => <h1 className='display-2'>
+                <ContentContainer>
+                  <LightText>
+                    Page not found
+                  </LightText>
+                </ContentContainer>
+              </h1>} />
+            </Switch>
+          </Provider>
         </>
       </Router>
     </ApolloProvider>

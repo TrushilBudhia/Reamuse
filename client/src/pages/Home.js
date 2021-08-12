@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Auth from '../utils/auth';
 import '../styles/style.css'
-import { ContentContainer, WelcomeContainer, WelcomeHeader, WelcomeParagraph, ButtonMagenta } from '../styles/style'
+import { ContentContainer, WelcomeContainer, WelcomeHeader, WelcomeParagraph, ButtonMagenta, ButtonBlue } from '../styles/style'
 
 const Home = () => {
   return (
@@ -22,10 +22,10 @@ const Home = () => {
               </Link>
             </div>
           ) : (
-            <Link to="/dashboard">
-            <ButtonMagenta>
+            <Link to="/dashboard" className="flex-center">
+            <ButtonBlue>
               Enter Challenge
-            </ButtonMagenta>
+            </ButtonBlue>
           </Link>
           )}
         </WelcomeContainer>
