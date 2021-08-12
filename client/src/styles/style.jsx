@@ -185,6 +185,31 @@ export const ButtonMagenta = styled.button`
     }
 `
 
+export const ButtonBlue = styled.button`
+    background-color: #0069d9;
+    border-color: #0062cc;
+    border-radius: .25rem;
+    color: #ffffff;
+    display: inline-block;
+    font-size: 1.25rem;
+    font-weight: 400;
+    line-height: 1.5;
+    margin-top: 1.1rem;
+    margin-right: 0.5rem;
+    padding: 0.75rem 4rem;
+    text-align: center;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    user-select: none;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    &:hover {
+        background-color: #a7326c;
+        border: 1px solid #cc004e;
+        color: #ffffff;
+        text-decoration: none;
+    }
+`
+
 // Form Styling
 export const Form = styled.form`
     margin: 0 auto;
@@ -215,25 +240,6 @@ export const FormControl = styled.div`
     padding: .375rem .75rem;
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
     width: 100%;
-`
-
-export const Alert = styled.div`
-    border: 1px solid transparent;
-    border-radius: .25rem;
-    margin-bottom: 1rem;
-    padding: .75rem 1.25rem;
-    position: relative;
-`
-
-export const AlertError = styled.div`
-    border: 1px solid transparent;
-    border-radius: .25rem;
-    margin-bottom: 1rem;
-    padding: .75rem 1.25rem;
-    position: relative;
-    color: #721c24;
-    background-color: #f8d7da;
-    border-color: #f5c6cb;
 `
 
 export const LightText = styled.div`

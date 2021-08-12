@@ -1,17 +1,14 @@
-import { useReducer } from 'react';
-import {
-    CLOSE_MENU,
-    HOVER_MAP_IMAGE,
-    SELECT_MAP_IMAGE,
-    SAVE_API_REGIONS,
-} from './actions'
+const CLOSE_MENU = 'CLOSE_MENU'
+const HOVER_MAP_IMAGE = 'HOVER_MAP_IMAGE'
+const SELECT_MAP_IMAGE = 'SELECT_MAP_IMAGE'
+const SAVE_API_REGIONS = 'SAVE_API_REGIONS'
 
 const initialState = {
     isMenuOpen: false,
     hoverMapImgSrc: '',
     selectMapImgSrc: '',
-    emptyMapImgSrc: 'https://i.ibb.co/CWg4ZsK/World-Map.png',
-    displayMapImgSrc: 'https://i.ibb.co/CWg4ZsK/World-Map.png',
+    emptyMapImgSrc: '/assets/images/World-Map.png',
+    displayMapImgSrc: '/assets/images/World-Map.png',
     regionSelect: '',
 }
 
@@ -51,7 +48,9 @@ const mapReducer = (state = initialState, action) => {
             return state
     }
 }
-export default Map;
+export default mapReducer;
+
+// ACTIONS
 
 export const hoverMapRegion = mapImgSrc => dispatch => {
     dispatch({
@@ -80,8 +79,3 @@ export const saveApiRegions = (regions) => dispatch => {
         }
     })
 }
-
-export function useProductReducer(initialState) {
-    return useReducer(mapReducer, initialState);
-  }
-  

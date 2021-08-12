@@ -96,7 +96,6 @@ form#registerform {
     position:relative;
 }
 
-
 button {
     background: transparent;
     border:0px;
@@ -109,10 +108,21 @@ button {
 button:focus {
     outline: 0px;
 }
+
 button.active {
     border-bottom: solid 2px #ff1080;
     padding-bottom: 10px;
 } 
+
+.flex-center {
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.flex-center:hover {
+    text-decoration: none;
+}
 
 
 /* MEDIA QUERIES */
