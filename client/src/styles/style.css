@@ -10,6 +10,10 @@ body {
         , rgb(13 13 15) 0%, rgb(12 12 54) 100%, rgb(7 7 50) 100%, rgb(15 15 115) 100%, rgb(0 0 0) 100%);
 }
 
+h2 {
+    color: #ffffff;
+}
+
 /* Navbar Styling */
 .collapse:not(.show) {
     display: none;

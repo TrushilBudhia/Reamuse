@@ -3,15 +3,6 @@ import { useSelector, useDispatch } from 'react-redux'
 import { ButtonsContent, ButtonField, ImgStyled } from './ButtonsContent.styles'
 import { hoverMapRegion, selectMapRegion } from '../../modules/app'
 
-// import worldMapAfrica from './World-Map-Africa.png';
-// import worldMapAsia from './World-Map-Asia.png';
-// import worldMapAustralia from './World-Map-Australia.png';
-// import worldMapEurope from './World-Map-Europe.png';
-// import worldMapNorthAmerica from './World-Map-North-America.png';
-// import worldMapSouthAmerica from './World-Map-South-America.png';
-
-// import { useStoreContext } from '../../utils/GlobalState';
-
 const buttonList = [
     {
         label: 'Africa',
@@ -39,15 +30,11 @@ const buttonList = [
     },
 ]
 
-console.log('state', useSelector);
-
 const ButtonContent = () => {
     const regionSelect = useSelector(({ app }) => app.regionSelect)
     const dispatch = useDispatch()
     const dispatchHoverMapRegion = (url) => dispatch(hoverMapRegion(url))
     const dispatchSelectMapRegion = (label, url) => dispatch(selectMapRegion(label, url))
-
-    // const [state, dispatch] = useStoreContext();
 
     return (
         <ButtonsContent>
