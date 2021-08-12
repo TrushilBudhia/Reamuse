@@ -10,8 +10,8 @@ const mq = breakpoints.map(
 export const Header = styled.main`
     margin: auto;
     max-width: 1200px;
-    padding-top: 50px;
-    padding-bottom: 120px;
+    padding-top: 1rem;
+    padding-bottom: 4rem;
     position: relative;
 `
 

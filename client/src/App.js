@@ -48,8 +48,9 @@ function App() {
               <Route exact path='/login' component={Login} />
               <Route exact path='/loginsignup' component={Login} />
               <Route exact path='/dashboard' component={Dashboard} />
+              {/* <Route exact path='/flip-card-eno' component={FlipCardGame} /> */}
               {/* <Route exact path='/highscores' component={Highscores} /> */}
-              <Route render={() => <h1 className='display-2'>
+              <Route render={() => <h1>
                 <ContentContainer>
                   <LightText>
                     Page not found
