@@ -7,6 +7,7 @@ const mq = breakpoints.map(
   bp => `@media (min-width: ${bp}px)`
 )
 
+// Dashboard Styling
 export const Header = styled.main`
     margin: auto;
     max-width: 1200px;
