@@ -54,6 +54,9 @@ function App() {
                 <ContentContainer>
                   <LightText>
                     Page not found
+                    <br />
+                    <br />
+                    Only empty space here.
                   </LightText>
                 </ContentContainer>
               </h1>} />

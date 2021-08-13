@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, Fragment } from 'react';
 import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom';
 import { useQuery, useMutation } from '@apollo/client';
@@ -18,7 +18,7 @@ const Dashboard = () => {
     useEffect(() => {
         const regionAreas = {
             africa: {
-                id: '1',
+                id: '101',
                 page_title: 'Africa',
                 header_image: '',
                 subheader: '',
@@ -28,7 +28,7 @@ const Dashboard = () => {
                 button_link: '/game1'
             },
             asia: {
-                id: '2',
+                id: '102',
                 page_title: 'Asia',
                 header_image: '',
                 subheader: '',
@@ -38,7 +38,7 @@ const Dashboard = () => {
                 button_link: '/game2',
             },
             australia: {
-                id: '3',
+                id: '103',
                 page_title: 'Australia - Submerged Within Mist',
                 header_image: '',
                 subheader: '',
@@ -50,7 +50,7 @@ const Dashboard = () => {
                 button_link: '/flip-card-eno',
             },
             europe: {
-                id: '4',
+                id: '104',
                 page_title: 'Europe',
                 header_image: '',
                 subheader: '',
@@ -60,7 +60,7 @@ const Dashboard = () => {
                 button_link: '/game4',
             },
             northAmerica: {
-                id: '5',
+                id: '105',
                 page_title: 'North America',
                 header_image: '',
                 subheader: '',
@@ -70,7 +70,7 @@ const Dashboard = () => {
                 button_link: '/game5',
             },
             southAmerica: {
-                id: '6',
+                id: '106',
                 page_title: 'South America',
                 header_image: '',
                 subheader: '',
@@ -82,31 +82,31 @@ const Dashboard = () => {
         }
 
         const valueArray = [regionAreas.africa, regionAreas.asia, regionAreas.australia, regionAreas.europe, regionAreas.northAmerica, regionAreas.southAmerica];
-        console.log('valueArray', valueArray);
-        console.log('regionAreas.australia', regionAreas.australia);
-        // let inputValue = document.getElementById('regionsId').value
-        // console.log('inputValue', inputValue);
 
         if (valueArray) {
-            // let regions = JSON.parse(inputValue)
-            // console.log('valueArray', valueArray);
             dispatchSaveApiRegions(valueArray)
         }
-
     }, [])
+
 
     // Setting up useQuery
     const { loading, data } = useQuery(GET_ME);
-    const userData = data?.me || {};
+    console.log('data', data);
+    // const userData = data?.me || {};
 
     // If data isn't here yet, display Loading
-    // if (loading) {
-    //     return <h2>Loading...</h2>;
-    // }
+    if (loading) {
+        return <Header><h2>Loading...</h2></Header>;
+    }
+    const token = Auth.loggedIn() ? Auth.getToken() : null;
 
+    if (!token) {
+        window.location.href = "/login";
+        return false;
+    }
 
     return (
-        <>
+        <Fragment>
             <Header>
                 <div className="container">
                     <MapButtons>
@@ -140,7 +140,7 @@ const Dashboard = () => {
             </input> */}
 
             <FeaturedContinent />
-        </>
+        </Fragment>
     );
 };
 
