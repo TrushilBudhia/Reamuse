@@ -1,6 +1,4 @@
-// see SignupForm.js for comments
 import React, { useState } from 'react';
-// import { Form, Alert } from 'react-bootstrap';
 import Auth from '../utils/auth';
 import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../utils/mutations'
@@ -42,6 +40,7 @@ const LoginForm = () => {
       // Authenticating login with the token
       Auth.login(data.loginUser.token);
       setUserExist(true);
+      
       if (error) {
         console.log('Login error');
         throw new Error('Something went wrong!');

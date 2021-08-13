@@ -26,8 +26,8 @@ export const Container = styled.div`
     justify-content: space-between;
     margin-right: auto;
     margin-left: auto;
-    padding-right: 15px;
-    padding-left: 15px;
+    padding-right: 1rem;
+    padding-left: 1rem;
     width: 100%;
 `
 
