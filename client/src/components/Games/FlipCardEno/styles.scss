@@ -1,0 +1,62 @@
+:root {
+    --card-width: 150px;
+    --card-height: 210px;
+}
+  
+.card {
+    box-sizing: border-box;
+    height: var(--card-height);
+    width: var(--card-width);
+    margin: 16px;
+    padding: 10px;
+    position: inline-block;
+    text-align: center;
+    transition: 0.6s;
+    transform-style: preserve-3d;
+    user-select: none;
+    div {
+        backface-visibility: hidden;
+        left: 0;
+        position: absolute;
+        top: 0;
+        transition: 0.6s;
+        height: 100%;
+        width: 100%;
+    }
+    .back {
+        align-items: center;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        line-height: 110px;
+        img {
+            border-radius: 5px;
+            height: var(--card-height);
+            width: var(--card-width);
+            vertical-align: middle;
+        }
+    }
+    .front {
+        line-height: 110px;
+        text-emphasis: none;
+        transform: rotateY(180deg);
+        img {
+            border-radius: 5px;
+            height: var(--card-height);
+            width: var(--card-width);
+            vertical-align: middle;
+        }
+    }
+    &.flipped {
+        transform: rotateY(180deg);
+    }
+    &.matched {
+      transform: rotateY(180deg);
+        .front {
+            animation: selected 0.8s 0s ease 1;
+            animation-fill-mode: both;
+            box-shadow: 0 0 0 2px rgba(#000, 0.05) inset;
+            opacity: 0.2;
+        }
+    }   
+}
