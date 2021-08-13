@@ -7,7 +7,6 @@ import { FeaturedContinentLanding, FeaturedContent, CloseBtn, ArrowUpContainer, 
 
 const ContinentChallenge = () => {
     const regions = useSelector(({ app }) => app.regions)
-    console.log('regions2', regions);
     const regionSelected = useSelector(({ app }) => app.regionSelect)
     let regionPost = {}
     let regionPostObj = {}
@@ -16,6 +15,7 @@ const ContinentChallenge = () => {
         regionPost = regions.find(region => region.region_name === regionSelected)
 
         regionPostObj = {
+            "id": regionPost.id,
             "pageTitle": regionPost.page_title,
             "subHeader": regionPost.subheader,
             "descriptionOne": regionPost.descriptionOne,
@@ -38,7 +38,7 @@ const ContinentChallenge = () => {
                 <ArrowUpContainer>
                     <ArrowUp><div className="arrow-up"></div></ArrowUp>
                 </ArrowUpContainer>
-                <FeaturedContent>
+                <FeaturedContent key={regionPostObj.id}>
                     <div className="content">
                         <ContinentHeader><div className="header">{regionPostObj.pageTitle}</div></ContinentHeader>
                         <SubHeader><div className="description-one">{regionPostObj.subHeader}</div></SubHeader>
@@ -47,7 +47,7 @@ const ContinentChallenge = () => {
                         <Quote>{regionPostObj.quote}</Quote>
                         <Link to={regionPostObj.gameLink} className="flex-center">
                             <ButtonLight>
-                                Enter Challenge
+                                Challenge
                             </ButtonLight>
                         </Link>
                         <HorizontalLine>

@@ -11,7 +11,7 @@ export const MapContent = styled.div`
     align-items: center;
     display: none;
     max-width: 585px;
-    ${mq[2]} {
+    ${mq[3]} {
         display: flex;
     }
 `

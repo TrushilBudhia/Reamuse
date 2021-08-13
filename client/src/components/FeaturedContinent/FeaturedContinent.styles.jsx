@@ -11,7 +11,7 @@ export const FeaturedContinentLanding = styled.div`
 
 export const FeaturedContent = styled.div`
     background-color: #8d255a;
-    font-family: lato;
+    font-family: 'Lato', sans-serif;
     padding-bottom: 60px;
     &:after {
         background-color: #8d255a;
@@ -92,8 +92,9 @@ export const Quote = styled.div`
     font-weight: 700;
     margin: 0 auto;
     margin-bottom: 2rem; 
-    margin-top: 1rem; 
+    margin-top: 1rem;
     max-width: 897px;
+    padding: 0 1rem;
 `
 
 export const ButtonLight = styled.button`
@@ -114,8 +115,8 @@ export const ButtonLight = styled.button`
     vertical-align: middle;
     -webkit-user-select: none;
     &:hover {
-        background-color: #0069d9;
-        border: 1px solid #0062cc;
+        background-color: #0c0c35;
+        border: 1px solid #0d0d22;
         color: #ffffff;
         text-decoration: none;
     }
@@ -128,6 +129,6 @@ export const HorizontalLine = styled.div`
     margin: 0 auto;
     max-width: 300px;
     opacity: 0.5;
-    padding-bottom: 27px;
-    padding-top: 27px;
+    padding-bottom: 2rem;
+    padding-top: 2rem;
 `

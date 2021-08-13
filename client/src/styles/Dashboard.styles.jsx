@@ -17,7 +17,7 @@ export const Header = styled.main`
 
 export const RegionInfo = styled.div`
     width: 100%;
-    ${mq[2]} {
+    ${mq[3]} {
         width: 50%;
     }
 `
@@ -25,7 +25,7 @@ export const RegionInfo = styled.div`
 export const Title = styled.div`
     margin-bottom: 32px;
     width: 100%;
-    ${mq[2]} {
+    ${mq[3]} {
         width: 80%;
     }
 `
@@ -47,7 +47,7 @@ export const MapButtons = styled.div`
 export const Description = styled.div`
     margin-bottom: 25px;
     width: 100%;
-    ${mq[2]} {
+    ${mq[3]} {
         width: 86%;
     }
 `

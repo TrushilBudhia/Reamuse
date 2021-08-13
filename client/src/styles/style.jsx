@@ -40,9 +40,10 @@ export const NavbarBrand = styled.div`
     margin-right: 1rem;
     padding-top: .3125rem;
     padding-bottom: .3125rem;
+    text-decoration: none;
     white-space: nowrap;
     &:hover {
-        color: hsla(0,0%,100%,.75);
+        color: #d10f6f;
         text-decoration: none;
     }
 `
@@ -163,7 +164,7 @@ export const Button = styled.button`
 
 export const ButtonMagenta = styled.button`
     background-color: #a7326c;
-    border: 1px solid #cc004e;
+    border: 1px solid #9d1b5c;
     border-radius: .25rem;
     color: #ffffff;
     display: inline-block;
@@ -204,7 +205,7 @@ export const ButtonBlue = styled.button`
     -webkit-user-select: none;
     &:hover {
         background-color: #a7326c;
-        border: 1px solid #cc004e;
+        border: 1px solid #9d1b5c
         color: #ffffff;
         text-decoration: none;
     }
