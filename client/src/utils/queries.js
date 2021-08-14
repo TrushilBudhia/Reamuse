@@ -9,6 +9,7 @@ export const GET_ME = gql`
       userAvatar
       gameCount
       savedGamesData {
+        _id
         gameId
         score
         highScore

@@ -2,7 +2,7 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom';
 import '../../styles/style.css'
-import { FeaturedContinentLanding, FeaturedContent, CloseBtn, ArrowUpContainer, ArrowUp, ContinentHeader, SubHeader, Description, Quote, HorizontalLine, ButtonLight } from './FeaturedContinent.styles.jsx'
+import { FeaturedContinentLanding, FeaturedContent, ArrowUpContainer, ArrowUp, ContinentHeader, SubHeader, Description, Quote, HorizontalLine, ButtonLight } from './FeaturedContinent.styles.jsx'
 
 
 const ContinentChallenge = () => {
@@ -23,7 +23,6 @@ const ContinentChallenge = () => {
             "quote": regionPost.quote,
             "gameLink": regionPost.button_link,
             "regionName": regionSelected,
-            // "featuredContinent": regionPost.featured_continent,
         }
     }
 

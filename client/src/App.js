@@ -5,7 +5,6 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { Provider } from 'react-redux'
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
-// import Signup from './pages/Signup';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 import FlipCardEno from './pages/FlipCardEno';

@@ -24,3 +24,25 @@ export const ADD_USER = gql`
   }
 `;
 
+export const UPDATE = gql`
+  mutation saveGameData($input: GameInformation) {
+    saveGameData(input: $GameInformation) {
+      token
+      user {
+        _id
+        username
+      }
+      userAvatar
+      gameCount
+      savedGamesData {
+        _id
+        gameId
+        score
+        highScore
+        highScoreDate
+        playCount
+      }
+    }
+  }
+`;
+

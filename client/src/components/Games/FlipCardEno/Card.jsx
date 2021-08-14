@@ -1,19 +1,21 @@
 import React from "react";
-import "./styles.scss";
+import { CardItem, Back, BackImage, Front, FrontImage } from './FlipCardEno.styles'
 
 const Card = ({ id, name, flipped, matched, clicked }) => {
   return (
-    <div
+    <CardItem
       onClick={() => (flipped ? undefined : clicked(name, id))}
       className={
         "card" + (flipped ? " flipped" : "") + (matched ? " matched" : "")
       }
     >
-      <div className="back"><img src="/assets/images/backcard.png" alt={name} /></div>
-      <div className="front">
-        <img alt={name} src={"/assets/images/" + name + ".png"} />
-      </div>
-    </div>
+      <Back>
+        <BackImage src="/assets/images/backcard.png" alt={name} />
+      </Back>
+      <Front className="front">
+        <FrontImage alt={name} src={"/assets/images/" + name + ".png"} />
+      </Front>
+    </CardItem>
   );
 };
 

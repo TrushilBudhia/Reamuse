@@ -3,6 +3,7 @@ import LoginForm from './LoginForm'
 import SignupForm from './SignupForm'
 import { useSpring, animated } from "react-spring";
 import '../styles/style.css'
+import { LoginSignUpWrapper, TabButton, FormGroup } from '../styles/style'
 
 const LoginSignupForm = () => {
   const [signup, setSignup] = useState(false);
@@ -35,8 +36,8 @@ const LoginSignupForm = () => {
   }
 
   return (
-    <div className="login-register-wrapper">
-      <div className="tab-buttons">
+    <LoginSignUpWrapper>
+      <TabButton>
         <animated.button
           onClick={loginClicked}
           id="loginButton"
@@ -51,16 +52,16 @@ const LoginSignupForm = () => {
         >
           Sign Up
         </animated.button>
-      </div>
-      <div className="form-group">
+      </TabButton>
+      <FormGroup>
         <animated.div action="" id="loginform" style={loginProps}>
           <LoginForm />
         </animated.div>
         <animated.div action="" id="registerform" style={signupProps}>
           <SignupForm />
         </animated.div>
-      </div>
-    </div>
+      </FormGroup>
+    </LoginSignUpWrapper>
   );
 }
 

@@ -3,6 +3,10 @@ import styled from 'styled-components'
 // VARIABLES
 const cardHeight = `210px`;
 const cardWidth = `150px`;
+const cardHeightTablet= `140px`;
+const cardWidthTablet = `100px`;
+const cardHeightMobile= `112px`;
+const cardWidthMobile = `80px`;
 
 // MEDIA QUERIES
 const breakpoints = [576, 768, 992, 1200]
@@ -63,7 +67,7 @@ export const GameTimer = styled.p`
     text-align: center;
 `
 
-export const TimeRemaining = styled.p`
+export const TimeRemaining = styled.div`
     align-items: center;
     color: #ffffff;
     display: flex;
@@ -81,21 +85,54 @@ export const Gameboard = styled.main`
     perspective: 1000px;
     width: 100%;
     ${mq[2]} {
-        width: 50%;
+        width: 80%;
+    }
+    ${mq[3]} {
+        width: 60%;
     }
 `
 // Flip Card Eno - CARD Styling
-export const Card = styled.div`
+export const CardItem = styled.div`
     box-sizing: border-box;
-    height: ${cardHeight};
+    height: ${cardHeightMobile};
     margin: 16px;
     padding: 10px;
     position: inline-block;
     text-align: center;
-    transition: 0.6s;
     transform-style: preserve-3d;
+    transition: 0.6s;
     user-select: none;
-    width: ${cardWidth};
+    width: ${cardWidthMobile};
+    div {
+        backface-visibility: hidden;
+        left: 0;
+        position: absolute;
+        top: 0;
+        transition: 0.6s;
+        height: 100%;
+        width: 100%;
+    }
+    &.flipped {
+        transform: rotateY(180deg);
+    }
+    &.matched {
+      transform: rotateY(180deg);
+        .front {
+            animation: selected 0.8s 0s ease 1;
+            animation-fill-mode: both;
+            box-shadow: 0 0 0 2px rgba(#000, 0.05) inset;
+            opacity: 0.2;
+        }
+    }   
+
+    ${mq[0]} {
+        height: ${cardHeightTablet};
+        width: ${cardWidthTablet};
+    }
+    ${mq[1]} {
+        height: ${cardHeight};
+        width: ${cardWidth};
+    }
 `
 
 export const Back = styled.div`
@@ -111,13 +148,25 @@ export const Back = styled.div`
     transition: 0.6s;
     height: 100%;
     width: 100%;
+    &:hover {
+        // opacity: 0.8;
+        transform: rotateY(20deg);
+    }
 `
 
-export const BackImage = styled.div`
+export const BackImage = styled.img`
     border-radius: 5px;
-    height: ${cardHeight};
-    width: ${cardWidth};
+    height: ${cardHeightMobile};
+    width: ${cardWidthMobile};
     vertical-align: middle;
+    ${mq[0]} {
+        height: ${cardHeightTablet};
+        width: ${cardWidthTablet};
+    }
+    ${mq[1]} {
+        height: ${cardHeight};
+        width: ${cardWidth};
+    }
 `
 
 export const Front = styled.div`
@@ -126,11 +175,19 @@ export const Front = styled.div`
     transform: rotateY(180deg);
 `
 
-export const FrontImage = styled.div`
+export const FrontImage = styled.img`
     border-radius: 5px;
-    height: ${cardHeight};
-    width: ${cardWidth};
+    height: ${cardHeightMobile};
+    width: ${cardWidthMobile};
     vertical-align: middle;
+    ${mq[0]} {
+        height: ${cardHeightTablet};
+        width: ${cardWidthTablet};
+    }
+    ${mq[1]} {
+        height: ${cardHeight};
+        width: ${cardWidth};
+    }
 `
 
 // Victory Message Styling
@@ -147,13 +204,13 @@ export const ButtonMagenta = styled.button`
     border: 1px solid #9d1b5c;
     border-radius: .25rem;
     color: #ffffff;
-    display: inline-block;
+    display: block;
     font-size: 1.2rem;
     font-weight: 400;
-    left: 28%;
+    // left: 28%;
     line-height: 1.5;
+    margin: 0 auto;
     margin-top: 1.1rem;
-    margin-right: 0.5rem;
     padding: 0.5rem 4rem;
     position: relative;
     text-align: center;
