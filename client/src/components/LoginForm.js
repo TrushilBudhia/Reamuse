@@ -3,8 +3,7 @@ import Auth from '../utils/auth';
 import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../utils/mutations'
 import { validateEmail } from '../utils/helpers';
-import '../styles/style.css'
-import { LightText, ButtonMagenta, Error } from '../styles/style.jsx'
+import { LightText, ButtonMagenta, Error, Form, FormField, FormLabel, FormControl, Input } from '../styles/style'
 
 const LoginForm = () => {
   const [userFormData, setUserFormData] = useState({ email: '', password: '' });
@@ -69,14 +68,13 @@ const LoginForm = () => {
 
   return (
     <>
-     <form className="form" noValidate validated={validated} onSubmit={handleFormSubmit}>
+     <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
         <LightText>
-          <div className="field">
-            <label className="label">Email:</label>
-            <p className="control">
-              <input
-                className="input"
-                id="email-signup"
+          <FormField>
+            <FormLabel>Email:</FormLabel>
+            <FormControl>
+              <Input
+                id="email-login"
                 type="email"
                 placeholder="Your email address"
                 name='email'
@@ -85,14 +83,13 @@ const LoginForm = () => {
                 required
               />
               {!validateEmail(userFormData.email) && submitted && <Error>*Please enter a valid email address</Error>}
-            </p>
-          </div>
-          <div className="field">
-            <label className="label">Password:</label>
-            <p className="control">
-              <input
-                className="input"
-                id="password-signup"
+            </FormControl>
+          </FormField>
+          <FormField>
+            <FormLabel>Password:</FormLabel>
+            <FormControl>
+              <Input
+                id="password-login"
                 type="password"
                 placeholder="Your password"
                 name='password'
@@ -100,22 +97,21 @@ const LoginForm = () => {
                 value={userFormData.password}
                 required
               />
-            </p>
-          </div>
-          <div className="field">
-            <p className="control">
+            </FormControl>
+          </FormField>
+          <FormField>
+            <FormControl>
             {userFormData.email && userFormData.password && <ButtonMagenta
-                className="button-style button-magenta"
                 disabled={!(userFormData.email && userFormData.password)}
                 type='submit'
               >
                 Submit
               </ButtonMagenta>}
-            </p>
+            </FormControl>
             {!userExist && submitted && <Error>*Incorrect email and/or password entered</Error>}
-          </div>
+          </FormField>
         </LightText>
-      </form>
+      </Form>
     </>
   );
 };

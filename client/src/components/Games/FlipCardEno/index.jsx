@@ -1,11 +1,16 @@
-import React, { useState, useEffect, Fragment } from "react";
+import React, { useState, useEffect } from "react";
+import { useQuery, useMutation } from '@apollo/client';
+import Auth from '../../../utils/auth';
+import { GET_ME } from '../../../utils/queries';
+import { UPDATE } from '../../../utils/mutations'
+import { saveGameDataIds, getSavedGamesDataIds } from '../../../utils/localStorage';
+
 import Card from "./Card";
 import GameOver from "./GameOver";
-import "./styles.scss";
 import { ContentContainer, Header, Title, TitleHeader, GameSummary, GameTimer, TimeRemaining, Gameboard } from './FlipCardEno.styles'
 
-
 const FlipCardEno = () => {
+    // Declaring and assigning startTime variable and cards Array
     const startTime = 100;
     const cards = [
         "flipcard-1",
@@ -21,6 +26,32 @@ const FlipCardEno = () => {
         "flipcard-6",
         "flipcard-6"
     ];
+
+    // Updating user data
+    // Setting up useQuery
+    const { data } = useQuery(GET_ME);
+    const userData = data?.me || {};
+    console.log('userData', userData);
+    console.log('userData2', userData.savedGamesData);
+
+    // Setting up gameData
+    const [gameData, setGameData] = useState({
+        gameId: 'flip-card-eno',
+        score: '',
+        highScore: '',
+        highScoreDate: '',
+        playCount: '',
+    })
+    const [score, setScore] = useState(0);
+
+    const [savedGameDataIds, setSavedGameDataIds] = useState(getSavedGamesDataIds);
+    // Setting up mutation
+    const [saveGameData, { error }] = useMutation(UPDATE);
+
+    useEffect(() => {
+        return () => saveGameDataIds(savedGameDataIds);
+      });
+    // console.log('savedGameDataIds',savedGameDataIds);
 
     // HELPER FUNCTION - shuffling the cards
     const shuffle = array => {
@@ -103,6 +134,17 @@ const FlipCardEno = () => {
             if (!card.matched) done = false;
         });
         setGameOver(done);
+        setGameData({
+            gameId: 'flip-card-eno',
+            score: '',
+            highScore: '',
+            highScoreDate: '',
+            playCount: '',
+        });
+        updateGameData();
+        setScore(Number(document.querySelector(".countdown-timer").innerHTML));
+    console.log('score', score);
+
     };
 
     // RESTART - REDO SETUP
@@ -150,6 +192,43 @@ const FlipCardEno = () => {
         );
     }
 
+    const updateGameData = async () => {
+        // Find the book in `searchedBooks` state by the matching id
+        const score = document.querySelector(".countdown-timer").innerHTML;
+        const gameDataToAdd = {
+            gameId: 'flip-card-eno',
+            score: score,
+            highScore: '',
+            highScoreDate: '',
+            playCount: '',
+        }
+        // Get token
+        const token = Auth.loggedIn() ? Auth.getToken() : null;
+    
+        if (!token) {
+          return false;
+        }
+    
+        try {    
+          // Adding code to execute asynchronous mutation function returned by `useMutation()` hook and pass in `variables` object
+          const data = await saveGameData({ 
+            variables: {
+              input: gameDataToAdd
+            }
+          });
+          console.log('data', data)
+    
+          if (error) {
+            throw new Error('Something went wrong!');
+          }
+          // If book successfully saves to user's account, save book id to state
+          setSavedGameDataIds([...savedGameDataIds, gameDataToAdd]);
+    
+        } catch (err) {
+          console.error(err);
+        }
+      };
+
     return (
         <ContentContainer>
             <Header>
@@ -176,7 +255,12 @@ const FlipCardEno = () => {
                         />
                     ))}
 
-                {gameOver && <GameOver restartGame={restartGame} score={document.querySelector(".countdown-timer").innerHTML} />}
+                {gameOver && <GameOver
+                    restartGame={restartGame}
+                    username={userData.username}
+                    score={document.querySelector(".countdown-timer").innerHTML}
+                    highscore={userData.highscore}
+                />}
             </Gameboard>
         </ContentContainer>
     );

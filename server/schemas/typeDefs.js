@@ -11,6 +11,7 @@ const typeDefs = gql`
   }
 
   type Game {
+    _id: ID!
     gameId: String!
     score: Int
     highScore: Int
@@ -28,6 +29,7 @@ const typeDefs = gql`
   }
 
   input GameInformation {
+    _id: ID!
     gameId: String!
     score: Int
     highScore: Int

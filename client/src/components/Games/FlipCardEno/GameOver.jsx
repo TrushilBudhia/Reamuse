@@ -1,24 +1,29 @@
 import React from "react";
-import './styles.scss'
+import { Link } from 'react-router-dom';
 import '../../../styles/style.css'
 import { VictoryMessage, ButtonMagenta } from './FlipCardEno.styles'
 
-
-const GameOver = ({ restartGame, score }) => {
+const GameOver = ({ restartGame, username, score }) => {
     return (
-        <div className="centered">
+        <div>
             {score >= 50 &&
-                <VictoryMessage className="text-is-white">Congratulations! Your score is <span className="pl-1">{score}</span></VictoryMessage>
+                <VictoryMessage>Congratulations {username}! Your score is <span>{score}</span></VictoryMessage>
             }
             {score < 50 && score >= 1 &&
-                <h1 className="text-is-white">Your score is <span className="pl-1">{score}</span></h1>
+                <VictoryMessage>Your score is <span>{score}</span></VictoryMessage>
             }
             {score < 1 &&
-                <h1 className="text-is-white">Too bad! You ran out of time. Your score is <span className="pl-1">{score}</span></h1>
+                <VictoryMessage>Too bad! You ran out of time. Your score is <span>{score}</span></VictoryMessage>
             }
-            <ButtonMagenta className="flex-center" onClick={restartGame}>
+            <ButtonMagenta onClick={restartGame}>
                 Play Again?
             </ButtonMagenta>
+            <br />
+            <Link to="/dashboard">
+                <ButtonMagenta className="flex-center">
+                    Back to dashboard
+                </ButtonMagenta>
+            </Link>
         </div>
     );
 };

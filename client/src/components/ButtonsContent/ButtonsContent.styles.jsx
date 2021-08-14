@@ -8,10 +8,15 @@ const mq = breakpoints.map(
 )
 
 export const ButtonsContent = styled.div`
-    margin-top: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0 auto;
+    margin-top: 3rem;
     width: 100%;
-    ${mq[2]} {
-        width: 90%;
+    ${mq[3]} {
+        justify-content: flex-start;
+        margin-top: 2rem;
     }
 `
 
@@ -46,6 +51,9 @@ export const ButtonField = styled.button`
         box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16) !important;  
         color: #ffffff;
     };
+    ${mq[2]} {
+
+    }
 `
 
 export const ImgStyled = styled.img`

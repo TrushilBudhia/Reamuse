@@ -1,5 +1,7 @@
 html {
     /* background-color: #0d2f4a; */
+    margin: 0;
+    padding: 0;
 }
 
 body {
@@ -8,6 +10,7 @@ body {
     background: linear-gradient(
         90deg
         , rgb(13 13 15) 0%, rgb(12 12 54) 100%, rgb(7 7 50) 100%, rgb(15 15 115) 100%, rgb(0 0 0) 100%);
+    height: 100% !important;
 }
 
 h2 {
@@ -19,87 +22,7 @@ h2 {
     display: none;
 }
 
-/* Form Styling */
-.form {
-    margin: 0 auto;
-    width: 50%;
-}
-
-.field:not(:last-child) {
-    margin-bottom: 1rem;
-}
-
-.label {
-    /* color: #363636; */
-    display: block;
-    font-size: 1.25rem;
-    margin-bottom: .5em;
-}
-
-.control {
-    box-sizing: border-box;
-    clear: both;
-    font-size: 1rem;
-    position: relative;
-    text-align: inherit;
-}
-
-.input {
-    background-color: #fff;
-    background-clip: padding-box;
-    border: 1px solid #ced4da; 
-    border-radius: .25rem;
-    border-color: #dbdbdb;
-    /* border-radius: 4px; */
-    /* box-shadow: inset 0 0.0625em 0.125em rgb(10 10 10 / 5%); */
-    color: #495057;
-    /* color: #363636; */
-    display: block;
-    font-size: 1rem;
-    font-weight: 400;
-    height: calc(1.5em + .75rem + 2px);
-    line-height: 1.5;
-    max-width: 100%;
-    padding: .375rem .75rem;
-    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-    width: 100%;
-}
-
-.input:focus {
-    background-color: #fff;
-    border-color: #ce3e7a;
-    box-shadow: 0 0 0 0.2rem rgb(255 0 123 / 25%);
-    color: #495057;
-    outline: 0;
-}
-
 /* Login form styling */
-.login-register-wrapper {
-    /* height: 560px; */
-    /* width: 500px; */
-    margin-left: auto;
-    margin-right: auto;
-    padding: 3rem 2em;
-    border-radius: 5px;
-    box-shadow: 0px 2px 7px rgba(0,0,0,0.2);
-    color:#ffffff;
-    /* background: #494949; */
-}
-
-.tab-buttons {
-    font-size: 1.5rem;
-    height: 100px;
-    margin: 0 auto;
-    margin-bottom: 3em;
-    opacity: 1;
-    padding-top: 40px;
-    width: 50%;
-}
-
-form#registerform {
-    position:relative;
-}
-
 button {
     background: transparent;
     border:0px;
@@ -128,8 +51,34 @@ button.active {
     text-decoration: none;
 }
 
-
 /* MEDIA QUERIES */
+@media (min-width: 768px) {
+    .form {
+        width: 70%;
+    }
+    .tab-buttons {
+        width: 70%;
+    }
+}
+
+@media (min-width: 992px) {
+    .form {
+        width: 60%;
+    }
+    .tab-buttons {
+        margin-bottom: 1em;
+        width: 60%;
+    }
+}
+
+@media (min-width: 1200px) {
+    .form {
+        width: 50%;
+    }
+    .tab-buttons {
+        width: 50%;
+    }
+}
 
 
 

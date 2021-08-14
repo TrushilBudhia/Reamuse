@@ -12,6 +12,7 @@ export const FeaturedContinentLanding = styled.div`
 export const FeaturedContent = styled.div`
     background-color: #8d255a;
     font-family: 'Lato', sans-serif;
+    margin-bottom: -0.5rem;
     padding-bottom: 60px;
     &:after {
         background-color: #8d255a;

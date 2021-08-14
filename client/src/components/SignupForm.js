@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-// import { Form, Alert } from 'react-bootstrap';
 import Auth from '../utils/auth';
 import { useMutation } from '@apollo/client';
 import { ADD_USER } from '../utils/mutations'
 import { validateEmail } from '../utils/helpers';
-import '../styles/style.css'
-import { LightText, ButtonMagenta, Error } from '../styles/style.jsx'
+import { LightText, ButtonMagenta, Error, Form, FormField, FormLabel, FormControl, Input } from '../styles/style'
+
 
 const SignupForm = () => {
   // Set initial form state
@@ -14,7 +13,6 @@ const SignupForm = () => {
   const [validated] = useState(false);
   // Set state of submitted
   const [submitted, setSubmitted] = useState(false);
-
   // Setting up mutation
   const [addUser, { error }] = useMutation(ADD_USER);
 
@@ -67,13 +65,12 @@ const SignupForm = () => {
   };
   return (
     <>
-      <form className="form" noValidate validated={validated} onSubmit={handleFormSubmit}>
+      <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
         <LightText>
-          <div className="field">
-            <label className="label">Username:</label>
-            <p className="control">
-              <input
-                className="input"
+          <FormField>
+            <FormLabel>Username:</FormLabel>
+            <FormControl>
+              <Input
                 id="username-signup"
                 type="text"
                 placeholder="Your username"
@@ -83,13 +80,12 @@ const SignupForm = () => {
                 required
               />
               {submitted && !userFormData.username && <Error>*Please enter a valid username</Error>}
-            </p>
-          </div>
-          <div className="field">
-            <label className="label">Email:</label>
-            <p className="control">
-              <input
-                className="input"
+            </FormControl>
+          </FormField>
+          <FormField>
+            <FormLabel>Email:</FormLabel>
+            <FormControl>
+              <Input
                 id="email-signup"
                 type="email"
                 placeholder="Your email address"
@@ -99,13 +95,12 @@ const SignupForm = () => {
                 required
               />
               {submitted && !validateEmail(userFormData.email) && <Error>*Please enter a valid email</Error>}
-            </p>
-          </div>
-          <div className="field">
-            <label className="label">Password:</label>
-            <p className="control">
-              <input
-                className="input"
+            </FormControl>
+          </FormField>
+          <FormField>
+            <FormLabel>Password:</FormLabel>
+            <FormControl>
+              <Input
                 id="password-signup"
                 type="password"
                 placeholder="Your password"
@@ -116,21 +111,20 @@ const SignupForm = () => {
               />
               {submitted && !userFormData.password && <Error>*Please enter a valid password</Error>}
 
-            </p>
-          </div>
-          <div className="field">
-            <p className="control">
+            </FormControl>
+          </FormField>
+          <FormField>
+            <FormControl>
               {userFormData.username && userFormData.email && userFormData.password && <ButtonMagenta
-                className="button-magenta"
                 disabled={!(userFormData.username && userFormData.email && userFormData.password)}
                 type='submit'
               >
                 Submit
               </ButtonMagenta>}
-            </p>
-          </div>
+            </FormControl>
+          </FormField>
         </LightText>
-      </form>
+      </Form>
     </>
   );
 };
