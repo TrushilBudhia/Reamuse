@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import Auth from '../utils/auth';
 import { useMutation } from '@apollo/client';
-import { LOGIN_USER } from '../utils/mutations'
-import { validateEmail } from '../utils/helpers';
-import { LightText, ButtonMagenta, Error, Form, FormField, FormLabel, FormControl, Input } from '../styles/style'
+import Auth from '../../utils/auth';
+import { LOGIN_USER } from '../../utils/mutations'
+import { validateEmail } from '../../utils/helpers';
+import { LightText, ButtonMagenta, Error } from '../../styles/style'
+import { Form, FormField, FormLabel, FormControl, Input } from './LoginSignupForm.styles'
 
 const LoginForm = () => {
   const [userFormData, setUserFormData] = useState({ email: '', password: '' });

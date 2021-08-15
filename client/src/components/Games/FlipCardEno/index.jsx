@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useQuery, useMutation } from '@apollo/client';
 import Auth from '../../../utils/auth';
+import { getDate } from '../../../utils/helpers'
 import { GET_ME } from '../../../utils/queries';
 import { UPDATE } from '../../../utils/mutations'
 import { saveGameDataIds, getSavedGamesDataIds } from '../../../utils/localStorage';
@@ -23,11 +24,10 @@ const FlipCardEno = () => {
         "flipcard-4",
         "flipcard-5",
         "flipcard-5",
-        "flipcard-6",
-        "flipcard-6"
+        "flipcard-6b",
+        "flipcard-6b"
     ];
 
-    // Updating user data
     // Setting up useQuery
     const { data } = useQuery(GET_ME);
     const userData = data?.me || {};
@@ -42,6 +42,19 @@ const FlipCardEno = () => {
         highScoreDate: '',
         playCount: '',
     })
+
+    // Updating user data
+    const [userProfileData, setUserProfileData] = useState({
+        _id: userData._id,
+        __typename: userData.__typename,
+        email: userData.email,
+        username: userData.username,
+        userAvatar: userData.userAvatar,
+        gameCount: userData.gameCount,
+        savedGamesData: userData.savedGamesData,
+    });
+    console.log('userProfileData1', userProfileData);
+
     const [score, setScore] = useState(0);
 
     const [savedGameDataIds, setSavedGameDataIds] = useState(getSavedGamesDataIds);
@@ -50,7 +63,7 @@ const FlipCardEno = () => {
 
     useEffect(() => {
         return () => saveGameDataIds(savedGameDataIds);
-      });
+    });
     // console.log('savedGameDataIds',savedGameDataIds);
 
     // HELPER FUNCTION - shuffling the cards
@@ -134,16 +147,10 @@ const FlipCardEno = () => {
             if (!card.matched) done = false;
         });
         setGameOver(done);
-        setGameData({
-            gameId: 'flip-card-eno',
-            score: '',
-            highScore: '',
-            highScoreDate: '',
-            playCount: '',
-        });
         updateGameData();
         setScore(Number(document.querySelector(".countdown-timer").innerHTML));
-    console.log('score', score);
+        // Update gameCount in the userData
+        console.log('score', score);
 
     };
 
@@ -193,41 +200,56 @@ const FlipCardEno = () => {
     }
 
     const updateGameData = async () => {
-        // Find the book in `searchedBooks` state by the matching id
+        // Assigning score the value of the time remaining 
         const score = document.querySelector(".countdown-timer").innerHTML;
+        const highScore = (userData.savedGamesData) ?
+            (userData.savedGamesaData.highScore > score) ? userData.savedGamesaData.highScore : score
+            : score;
         const gameDataToAdd = {
             gameId: 'flip-card-eno',
-            score: score,
-            highScore: '',
-            highScoreDate: '',
-            playCount: '',
+            score: Number(score),
+            highScore: Number(highScore),
+            highScoreDate: getDate(),
+            playCount: (userData.savedGamesData) ? userData.savedGamesaData.playCount + 1 : 0 + 1,
         }
+        console.log('gameDataToAdd', gameDataToAdd);
+
+        // Updating user profile data - game count
+        setUserProfileData({
+            _id: userData._id,
+            email: userData.email,
+            username: userData.username,
+            userAvatar: userData.userAvatar,
+            gameCount: userData.gameCount + 1,
+            savedGamesData: [gameDataToAdd],
+        });
+
         // Get token
         const token = Auth.loggedIn() ? Auth.getToken() : null;
-    
+
         if (!token) {
-          return false;
+            return false;
         }
-    
-        try {    
-          // Adding code to execute asynchronous mutation function returned by `useMutation()` hook and pass in `variables` object
-          const data = await saveGameData({ 
-            variables: {
-              input: gameDataToAdd
+
+        try {
+            // Adding code to execute asynchronous mutation function returned by `useMutation()` hook and pass in `variables` object
+            const data = await saveGameData({
+                variables: {
+                    input: { ...gameDataToAdd }
+                }
+            });
+            console.log('data', data)
+
+            if (error) {
+                throw new Error('Something went wrong!');
             }
-          });
-          console.log('data', data)
-    
-          if (error) {
-            throw new Error('Something went wrong!');
-          }
-          // If book successfully saves to user's account, save book id to state
-          setSavedGameDataIds([...savedGameDataIds, gameDataToAdd]);
-    
+            // If book successfully saves to user's account, save book id to state
+            setSavedGameDataIds([...savedGameDataIds, gameDataToAdd]);
+
         } catch (err) {
-          console.error(err);
+            console.error(err);
         }
-      };
+    };
 
     return (
         <ContentContainer>
@@ -237,6 +259,9 @@ const FlipCardEno = () => {
                         Flip Card Eno
                     </TitleHeader>
                 </Title>
+                <GameSummary>
+                    The objective is to match pairs of cards until all have been flipped over and matched.
+                </GameSummary>
                 <GameSummary>
                     The amount of points you will achieve within the game will depend on the time you have left remaining upon completion of the challenge.
                 </GameSummary>

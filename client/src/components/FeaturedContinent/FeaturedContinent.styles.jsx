@@ -1,10 +1,16 @@
 import styled from 'styled-components'
 
+// MEDIA QUERIES
+const breakpoints = [576, 768, 992, 1200]
+
+const mq = breakpoints.map(
+  bp => `@media (min-width: ${bp}px)`
+)
+
 export const FeaturedContinentLanding = styled.div`
-    // background-color: #8d255a;
     margin: auto;
-    margin-left: -0.5rem;
-    margin-right: -0.5rem;
+    // margin-left: -0.5rem;
+    // margin-right: -0.5rem;
     position: relative;
     text-align: center;
 `
@@ -12,13 +18,13 @@ export const FeaturedContinentLanding = styled.div`
 export const FeaturedContent = styled.div`
     background-color: #8d255a;
     font-family: 'Lato', sans-serif;
-    margin-bottom: -0.5rem;
-    padding-bottom: 60px;
+    // margin-bottom: -0.5rem;
+    padding-bottom: 1rem;
     &:after {
         background-color: #8d255a;
         height: 100%;
         left: 50%;
-        margin-left: -50vw;
+        // margin-left: -50vw;
         position: absolute;
         top: 0;
         width: 100vw;
@@ -32,13 +38,12 @@ export const CloseBtn = styled.div`
     margin-left: 80%;
     position: absolute;
     z-index: 2;
-
     &:hover {
         cursor: pointer;
     },
 
     &:before {
-        content: url("../assets/ui/ic_close.svg");
+        content: url("/assets/images/ic_close.svg");
     },
 `
 
@@ -53,13 +58,20 @@ export const ArrowUp = styled.div`
     border-right: 30px solid transparent;
     border-bottom: 25px solid #8d255a;
     box-shadow: 0 1px 1px -1px #8d255a;
-    left: 48%;
+    left: 44%;
     position: absolute;
+    max-width: 100%;
+    ${mq[0]} {
+        left: 46%;
+    }
+    ${mq[1]} {
+        left: 48%;
+    }
 `
 
 export const ContinentHeader = styled.div`
     color: #ffffff;
-    font-size: 31px;
+    font-size: 2rem;
     font-weight: 700;
     padding: 96px 0 33px 0;
 `
@@ -68,7 +80,7 @@ export const SubHeader = styled.div`
     color: #ffffff;
     display: table;
     font-weight: 300;
-    line-height: 24px;
+    line-height: 1.5rem;
     margin: 0 auto;
     max-width: 897px;
     padding: 0 30px;
@@ -79,7 +91,7 @@ export const Description = styled.div`
     display: table;
     font-size: 1.2rem;
     font-weight: 300;
-    line-height: 24px;
+    line-height: 1.5rem;
     margin: 0 auto;
     max-width: 897px;
     padding: 0.5rem 1rem 2rem 1rem;

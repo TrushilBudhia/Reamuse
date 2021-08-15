@@ -1,22 +1,33 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Auth from '../utils/auth';
-import '../styles/style.css'
-import { Navbar, Container, NavbarBrand, NavbarToggler, NavbarTogglerIcon, NavbarCollapse, Nav, NavLink } from '../styles/style.jsx';
+import Auth from '../../utils/auth';
+import '../../styles/style.css'
+import { Navbar, Container, NavbarBrand, NavbarToggler, NavbarCollapse, Nav, NavLink } from './Navbar.styles';
+import { FaBars } from "react-icons/fa";
+
+const openNavbar = () => {
+  let linkSelect = document.querySelector('.links');
+  console.log('linkSelect', linkSelect);
+  if (linkSelect.style.display === "block") {
+    linkSelect.style.display = "none";
+  } else {
+    linkSelect.style.display = "block";
+  }
+}
 
 const AppNavbar = () => {
   return (
     <>
       <Navbar className='bg-navy' variant='dark' expand='lg'>
-        <Container fluid>
+        <Container>
           <NavbarBrand as={Link} to='/'>
             REAMUSE
           </NavbarBrand>
-          {/* <NavbarToggler aria-controls='navbar'>
-            <NavbarTogglerIcon />
-          </NavbarToggler> */}
+          <NavbarToggler onClick={openNavbar} aria-controls='navbar'>
+            <FaBars />
+          </NavbarToggler>
           <NavbarCollapse id='navbar'>
-            <Nav>
+            <Nav className='links'>
               <Link to='/'>
                 <NavLink>
                   Home
