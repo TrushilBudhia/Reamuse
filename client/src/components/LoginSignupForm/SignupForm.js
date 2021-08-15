@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import Auth from '../utils/auth';
 import { useMutation } from '@apollo/client';
-import { ADD_USER } from '../utils/mutations'
-import { validateEmail } from '../utils/helpers';
-import { LightText, ButtonMagenta, Error, Form, FormField, FormLabel, FormControl, Input } from '../styles/style'
-
+import Auth from '../../utils/auth';
+import { ADD_USER } from '../../utils/mutations'
+import { validateEmail } from '../../utils/helpers';
+import { LightText, ButtonMagenta, Error } from '../../styles/style'
+import { Form, FormField, FormLabel, FormControl, Input } from './LoginSignupForm.styles'
 
 const SignupForm = () => {
   // Set initial form state
@@ -51,11 +51,15 @@ const SignupForm = () => {
     if (userFormData.username && validateEmail(userFormData.email) && userFormData.password) {
       // sets valid to true if all the input fields are valid
       // Valid being true allows the success message to be displayed
-      setUserFormData({
-        username: '',
-        email: '',
-        password: '',
-      });
+      // Setting a delay to account for page loading after a successful signup
+      setTimeout(function () {
+        setUserFormData({
+          username: '',
+          email: '',
+          password: '',
+        })
+      }, 1000);
+
     } else {
       console.log('Something went wrong');
     }

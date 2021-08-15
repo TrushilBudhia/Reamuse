@@ -9,7 +9,7 @@ import ButtonsContent from '../components/ButtonsContent'
 import FeaturedContinent from '../components/FeaturedContinent'
 import { saveApiRegions } from '../modules/app'
 import '../styles/style.css'
-import { Header, MapButtons, RegionInfo, Title, TitleHeader, Description, DescriptionInner, Quote } from '../styles/Dashboard.styles.jsx'
+import { ContentContainer, Header, MapButtons, RegionInfo, Title, TitleHeader, Description, DescriptionInner, Quote } from '../styles/Dashboard.styles.jsx'
 
 const Dashboard = () => {
     const dispatch = useDispatch()
@@ -26,7 +26,7 @@ const Dashboard = () => {
                 descriptionOne: 'A mysterious silence hangs in the air.',
                 descriptionTwo: 'No challenge has been issued by the alien present within this region yet.',
                 region_name: 'Africa',
-                button_link: '/game1'
+                button_link: ''
             },
             asia: {
                 id: '102',
@@ -37,7 +37,7 @@ const Dashboard = () => {
                 descriptionOne: 'A mysterious silence hangs in the air.',
                 descriptionTwo: 'No challenge has been issued by the alien present within this region yet.',
                 region_name: 'Asia',
-                button_link: '/game2',
+                button_link: '',
             },
             australia: {
                 id: '103',
@@ -60,7 +60,7 @@ const Dashboard = () => {
                 descriptionOne: 'A mysterious silence hangs in the air.',
                 descriptionTwo: 'No challenge has been issued by the alien present within this region yet.',
                 region_name: 'Europe',
-                button_link: '/game4',
+                button_link: '',
             },
             northAmerica: {
                 id: '105',
@@ -71,7 +71,7 @@ const Dashboard = () => {
                 descriptionOne: 'A mysterious silence hangs in the air.',
                 descriptionTwo: 'No challenge has been issued by the alien present within this region yet.',
                 region_name: 'North America',
-                button_link: '/game5',
+                button_link: '',
             },
             southAmerica: {
                 id: '106',
@@ -82,7 +82,7 @@ const Dashboard = () => {
                 descriptionOne: 'A mysterious silence hangs in the air.',
                 descriptionTwo: 'No challenge has been issued by the alien present within this region yet.',
                 region_name: 'South America',
-                button_link: '/game6',
+                button_link: '',
             }
         }
 
@@ -111,7 +111,7 @@ const Dashboard = () => {
     }
 
     return (
-        <Fragment>
+        <ContentContainer>
             <Header>
                 <div className="container">
                     <MapButtons>
@@ -140,12 +140,8 @@ const Dashboard = () => {
 
                 </div>
             </Header>
-
-            {/* <input id="regionsId" type="hidden" value={`[abc, 123, 533, 3532, dsgsds]`}>
-            </input> */}
-
             <FeaturedContinent />
-        </Fragment>
+        </ContentContainer>
     );
 };
 

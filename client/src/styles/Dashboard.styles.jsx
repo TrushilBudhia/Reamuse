@@ -8,7 +8,11 @@ const mq = breakpoints.map(
 )
 
 // Dashboard Styling
-export const Header = styled.main`
+export const ContentContainer = styled.main`
+    width: 100%;
+`
+
+export const Header = styled.div`
     margin: auto;
     max-width: 1200px;
     padding-top: 1rem;
@@ -17,7 +21,8 @@ export const Header = styled.main`
 `
 
 export const RegionInfo = styled.div`
-    width: 100%;
+    margin: 0 auto;
+    width: 95%;
     ${mq[3]} {
         width: 50%;
     }

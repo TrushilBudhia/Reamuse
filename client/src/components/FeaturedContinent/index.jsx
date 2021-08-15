@@ -44,11 +44,11 @@ const ContinentChallenge = () => {
                         <Description><div className="description-one">{regionPostObj.descriptionOne}</div></Description>
                         <Description><div className="description-two">{regionPostObj.descriptionTwo}</div></Description>
                         <Quote>{regionPostObj.quote}</Quote>
-                        <Link to={regionPostObj.gameLink} className="flex-center">
+                        {regionPostObj.gameLink && <Link to={regionPostObj.gameLink} className="flex-center">
                             <ButtonLight>
                                 Challenge
                             </ButtonLight>
-                        </Link>
+                        </Link>}
                         <HorizontalLine>
                             <div className="line">
                                 <hr />

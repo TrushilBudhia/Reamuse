@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import LoginForm from './LoginForm'
 import SignupForm from './SignupForm'
 import { useSpring, animated } from "react-spring";
-import '../styles/style.css'
-import { LoginSignUpWrapper, TabButton, FormGroup } from '../styles/style'
+import '../../styles/style.css'
+import { LoginSignUpWrapper, TabButton, FormGroup } from './LoginSignupForm.styles'
 
 const LoginSignupForm = () => {
   const [signup, setSignup] = useState(false);
