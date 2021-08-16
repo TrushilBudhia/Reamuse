@@ -8,10 +8,10 @@ import { FaBars } from "react-icons/fa";
 const openNavbar = () => {
   let linkSelect = document.querySelector('.links');
   console.log('linkSelect', linkSelect);
-  if (linkSelect.style.display === "block") {
+  if (linkSelect.style.display === "flex") {
     linkSelect.style.display = "none";
   } else {
-    linkSelect.style.display = "block";
+    linkSelect.style.display = "flex";
   }
 }
 

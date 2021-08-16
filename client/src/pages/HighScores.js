@@ -3,7 +3,7 @@ import { useQuery } from '@apollo/client';
 import Auth from '../utils/auth';
 import { GET_ME } from '../utils/queries';
 import '../styles/style.css'
-import { ContentContainer, Header, Title, TitleHeader, HighScoresTable, TableHeader, TableContent, TableCell } from '../styles/HighScores.styles.jsx'
+import { ContentContainer, Header, Title, TitleHeader, HighScoresTable, TableHeader, TableContent, TableCell, Content } from '../styles/HighScores.styles.jsx'
 
 const HighScores = () => {
     // Setting up useQuery
@@ -35,7 +35,7 @@ const HighScores = () => {
 
     return (
         <ContentContainer>
-            <Header>
+            {(sortedFlipCardDataArray.length > 0) ? <Header>
                 <Title>
                     <TitleHeader>HIGH SCORES</TitleHeader>
                 </Title>
@@ -54,9 +54,12 @@ const HighScores = () => {
                         </TableCell>
                     </TableContent>
                 </HighScoresTable>
-                {/* <Content>The stars have yet to align</Content>
-                <Content>Work in progress...</Content> */}
-            </Header>
+            </Header> :
+                <Header>
+                    <Content>The stars have yet to align</Content>
+                    <Content>Work in progress...</Content>
+                </Header>
+            }
         </ContentContainer>
     );
 };
