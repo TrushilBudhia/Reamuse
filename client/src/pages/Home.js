@@ -11,7 +11,7 @@ const Home = () => {
         <WelcomeContainer>
           <WelcomeHeader>GREETINGS TRAVELER</WelcomeHeader>
           <WelcomeParagraph>
-            Welcome to the space of Remuse, where aliens have invaded and it is up to heroes like you to join the battle and defend against the enigmatic intentions of the space denizens through the challenge of puzzle games.
+            Welcome to the space of Reamuse, where aliens have invaded and it is up to heroes like you to join the battle and defend against the enigmatic intentions of the space denizens through the challenge of puzzle games.
           </WelcomeParagraph>
           {!Auth.loggedIn() ? (
             <div>
