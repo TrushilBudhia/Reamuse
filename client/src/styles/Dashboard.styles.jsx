@@ -40,7 +40,7 @@ export const TitleHeader = styled.div`
     color: #ffffff;
     font-family: 'Gamlangdee', sans-serif;
     font-size: 2.5rem;
-    margin: 0px;
+    margin: 0;
     text-align: center;
 `
 
@@ -51,7 +51,7 @@ export const MapButtons = styled.div`
 `
 
 export const Description = styled.div`
-    margin-bottom: 25px;
+    margin-bottom: 2rem;
     width: 100%;
     ${mq[3]} {
         width: 86%;
