@@ -21,8 +21,8 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
-    // set gameData to be an array of data that adheres to the gameSchema
-    gameData: [gameSchema],
+    // set savedGamesData to be an array of data that adheres to the gameSchema
+    savedGamesData: [gameSchema],
   },
   // Setting virtuals to true
   {
@@ -47,9 +47,9 @@ userSchema.methods.isCorrectPassword = async function (password) {
   return bcrypt.compare(password, this.password);
 };
 
-// When we query a user, we'll also get another field called `gameCount` with the number of games challenges by the user
+// When we query a user, we'll also get another field called `savedGamesData` with the number of games challenged by the user
 userSchema.virtual('gameCount').get(function () {
-  return this.gameData.length;
+  return this.savedGamesData.length;
 });
 
 const User = model('User', userSchema);

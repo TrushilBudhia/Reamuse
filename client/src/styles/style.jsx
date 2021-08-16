@@ -129,9 +129,3 @@ export const DarkText = styled.div`
     color: ##212529;
 `
 
-export const Error = styled.div`
-    color: #ff1039;
-    font-size: 1.2rem;'
-    margin: 1.5rem 0;
-`
-

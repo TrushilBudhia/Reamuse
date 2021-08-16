@@ -52,7 +52,7 @@ export const FormLabel = styled.label`
     margin-bottom: .5rem;
 `
 
-export const FormControl = styled.p`
+export const FormControl = styled.div`
     box-sizing: border-box;
     clear: both;
     font-size: 1rem;
@@ -82,4 +82,10 @@ export const Input = styled.input`
         color: #495057;
         outline: 0;
     }
+`
+
+export const Error = styled.div`
+    color: #ff1039;
+    font-size: 1.2rem;'
+    margin: 1.5rem 0;
 `

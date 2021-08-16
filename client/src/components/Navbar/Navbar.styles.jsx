@@ -33,6 +33,7 @@ export const Container = styled.div`
         justify-content: space-between;
         margin-right: auto;
         margin-left: auto;
+        padding: 0.5rem 1rem;
     }
 `
 
