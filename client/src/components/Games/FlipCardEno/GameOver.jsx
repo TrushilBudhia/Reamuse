@@ -1,9 +1,13 @@
 import React from "react";
 import { Link } from 'react-router-dom';
+import Auth from '../../../utils/auth';
 import '../../../styles/style.css'
 import { VictoryMessage, ButtonMagenta } from './FlipCardEno.styles'
 
 const GameOver = ({ restartGame, username, score }) => {
+    // Get token
+    const token = Auth.loggedIn() ? Auth.getToken() : null;
+
     return (
         <div>
             {/* Hide timer section */}
@@ -21,11 +25,16 @@ const GameOver = ({ restartGame, username, score }) => {
                 Play Again?
             </ButtonMagenta>
             <br />
-            <Link to="/dashboard">
+            {token && <Link to="/dashboard">
                 <ButtonMagenta className="flex-center">
                     Back to dashboard
                 </ButtonMagenta>
-            </Link>
+            </Link>}
+            {!token && <Link to="/login">
+                <ButtonMagenta className="flex-center">
+                    Login
+                </ButtonMagenta>
+            </Link>}
         </div>
     );
 };
