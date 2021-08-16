@@ -93,13 +93,13 @@ export const TableCell = styled.div`
     }
 `
 
-// export const Content = styled.div`
-//     font-size: 2rem;
-//     margin: 1rem 0rem 1rem 0rem;
-//     text-align: center;
-//     width: 100%;
-//     ${mq[1]} {
-//         margin: 2rem 0rem 2rem 0rem;
-//         width: 86%;
-//     }
-// `
+export const Content = styled.div`
+    font-size: 2rem;
+    margin: 1rem 0rem 1rem 0rem;
+    text-align: center;
+    width: 100%;
+    ${mq[1]} {
+        margin: 2rem 0rem 2rem 0rem;
+        width: 86%;
+    }
+`

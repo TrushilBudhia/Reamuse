@@ -56,6 +56,14 @@ button.active {
     text-decoration: none;
 }
 
+.hide {
+    display: none;
+}
+
+.show-block {
+    display: block;
+}
+
 /* MEDIA QUERIES */
 @media (min-width: 768px) {
     .form {
