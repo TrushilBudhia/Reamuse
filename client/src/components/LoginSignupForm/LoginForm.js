@@ -3,8 +3,8 @@ import { useMutation } from '@apollo/client';
 import Auth from '../../utils/auth';
 import { LOGIN_USER } from '../../utils/mutations'
 import { validateEmail } from '../../utils/helpers';
-import { LightText, ButtonMagenta, Error } from '../../styles/style'
-import { Form, FormField, FormLabel, FormControl, Input } from './LoginSignupForm.styles'
+import { LightText, ButtonMagenta } from '../../styles/style'
+import { Form, FormField, FormLabel, FormControl, Input, Error } from './LoginSignupForm.styles'
 
 const LoginForm = () => {
   const [userFormData, setUserFormData] = useState({ email: '', password: '' });

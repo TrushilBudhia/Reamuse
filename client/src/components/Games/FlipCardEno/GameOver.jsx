@@ -6,6 +6,8 @@ import { VictoryMessage, ButtonMagenta } from './FlipCardEno.styles'
 const GameOver = ({ restartGame, username, score }) => {
     return (
         <div>
+            {/* Hide timer section */}
+            {document.querySelector('.time-remaining').setAttribute('style', 'display: none')}
             {score >= 50 &&
                 <VictoryMessage>Congratulations {username}! Your score is <span>{score}</span></VictoryMessage>
             }

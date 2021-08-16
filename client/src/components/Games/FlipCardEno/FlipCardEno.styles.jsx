@@ -57,6 +57,7 @@ export const GameSummary = styled.p`
     color: #ffffff;
     font-size: 1.5rem;
     height: 100%;
+    padding: 1rem 0.5rem;
     text-align: center; 
     width: 100%;
 `
@@ -73,6 +74,7 @@ export const TimeRemaining = styled.div`
     display: flex;
     font-size: 1.2rem;
     justify-content: center;
+    padding: 1.2rem 0rem;
 `
 
 // Flip Card Eno - GAMEBOARD Styling
@@ -195,6 +197,7 @@ export const VictoryMessage = styled.h3`
     font-family: 'Rubik', sans-serif;
     font-size: 2rem;
     font-style: none;
+    padding: 1rem 0rem;
     text-align: center;
     text-decoration: none;
 `

@@ -2,15 +2,16 @@ import React, { useState, useEffect } from "react";
 import { useQuery, useMutation } from '@apollo/client';
 import Auth from '../../../utils/auth';
 import { getDate } from '../../../utils/helpers'
-import { GET_ME } from '../../../utils/queries';
 import { UPDATE } from '../../../utils/mutations'
 import { saveGameDataIds, getSavedGamesDataIds } from '../../../utils/localStorage';
+import { GET_ME } from '../../../utils/queries';
 
 import Card from "./Card";
 import GameOver from "./GameOver";
 import { ContentContainer, Header, Title, TitleHeader, GameSummary, GameTimer, TimeRemaining, Gameboard } from './FlipCardEno.styles'
 
 const FlipCardEno = () => {
+    
     // Declaring and assigning startTime variable and cards Array
     const startTime = 100;
     const cards = [
@@ -32,17 +33,7 @@ const FlipCardEno = () => {
     const { data } = useQuery(GET_ME);
     const userData = data?.me || {};
     console.log('userData', userData);
-    console.log('userData2', userData.savedGamesData);
-
-    // Setting up gameData
-    const [gameData, setGameData] = useState({
-        gameId: 'flip-card-eno',
-        score: '',
-        highScore: '',
-        highScoreDate: '',
-        playCount: '',
-    })
-
+    
     // Updating user data
     const [userProfileData, setUserProfileData] = useState({
         _id: userData._id,
@@ -147,15 +138,19 @@ const FlipCardEno = () => {
             if (!card.matched) done = false;
         });
         setGameOver(done);
-        updateGameData();
-        setScore(Number(document.querySelector(".countdown-timer").innerHTML));
-        // Update gameCount in the userData
-        console.log('score', score);
-
+        if (gameOver) {
+            updateGameData();
+            console.log('Update called');
+            setScore(Number(document.querySelector(".countdown-timer").innerHTML));
+            console.log('score', score);
+        }
     };
 
     // RESTART - REDO SETUP
     const restartGame = () => {
+        // Show timer
+        document.querySelector('.time-remaining').setAttribute('style', 'display: flex')
+        // Shuffle cards on gameboard
         setCardList(
             shuffle(cards).map((name, index) => {
                 return {
@@ -202,7 +197,7 @@ const FlipCardEno = () => {
     const updateGameData = async () => {
         // Assigning score the value of the time remaining 
         const score = document.querySelector(".countdown-timer").innerHTML;
-        const highScore = (userData.savedGamesData) ?
+        const highScore = (userData.savedGamesData > 0) ?
             (userData.savedGamesaData.highScore > score) ? userData.savedGamesaData.highScore : score
             : score;
         const gameDataToAdd = {
@@ -210,7 +205,7 @@ const FlipCardEno = () => {
             score: Number(score),
             highScore: Number(highScore),
             highScoreDate: getDate(),
-            playCount: (userData.savedGamesData) ? userData.savedGamesaData.playCount + 1 : 0 + 1,
+            playCount: (userData.savedGamesData > 0) ? userData.savedGamesaData.playCount + 1 : 0 + 1,
         }
         console.log('gameDataToAdd', gameDataToAdd);
 
@@ -265,7 +260,7 @@ const FlipCardEno = () => {
                 <GameSummary>
                     The amount of points you will achieve within the game will depend on the time you have left remaining upon completion of the challenge.
                 </GameSummary>
-                <TimeRemaining>Time Remaining: {CountDownTimer()}</TimeRemaining>
+                <TimeRemaining className="time-remaining">Time Remaining: {CountDownTimer()}</TimeRemaining>
             </Header>
             <Gameboard>
                 {!gameOver &&

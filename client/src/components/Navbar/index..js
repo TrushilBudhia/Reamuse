@@ -18,7 +18,7 @@ const openNavbar = () => {
 const AppNavbar = () => {
   return (
     <>
-      <Navbar className='bg-navy' variant='dark' expand='lg'>
+      <Navbar>
         <Container>
           <NavbarBrand as={Link} to='/'>
             REAMUSE
