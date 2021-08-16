@@ -45,13 +45,61 @@ export const TitleHeader = styled.div`
     text-align: center;
 `
 
-export const Content = styled.div`
+export const HighScoresTable = styled.div`
+    border: 0.2rem solid #ffffff;
     font-size: 2rem;
     margin: 1rem 0rem 1rem 0rem;
+    padding: 2rem 1rem;
     text-align: center;
-    width: 100%;
+    width: 90%;
     ${mq[1]} {
         margin: 2rem 0rem 2rem 0rem;
-        width: 86%;
+        width: 80%;
     }
 `
+
+export const TableHeader = styled.h3`
+    border-bottom: 0.1rem solid #ffffff;
+    font-family: 'Elianto', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 200;
+    margin-bottom: 1rem;
+    padding-bottom: 2rem;
+`
+
+export const TableContent = styled.div`
+    font-size: 2rem;
+    margin: 0.5rem 0rem 0.5rem 0rem;
+    text-align: center;
+    width: 100%;
+    &span {
+        font-size:5rem;
+    }
+    ${mq[1]} {
+        margin: 0 auto;
+        width: 80%;
+    }
+`
+
+export const TableCell = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 0 auto;
+    width: 80%;
+    ${mq[2]} {
+        margin: 0 auto;
+        width: 70%;
+    }
+`
+
+// export const Content = styled.div`
+//     font-size: 2rem;
+//     margin: 1rem 0rem 1rem 0rem;
+//     text-align: center;
+//     width: 100%;
+//     ${mq[1]} {
+//         margin: 2rem 0rem 2rem 0rem;
+//         width: 86%;
+//     }
+// `

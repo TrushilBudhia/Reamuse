@@ -34,6 +34,7 @@ export const UPDATE = gql`
       gameCount
       savedGamesData {
         gameId
+        gameTitle
         score
         highScore
         highScoreDate

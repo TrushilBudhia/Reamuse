@@ -52,8 +52,10 @@ export const MapButtons = styled.div`
 
 export const Description = styled.div`
     margin-bottom: 2rem;
+    text-align: center;
     width: 100%;
     ${mq[3]} {
+        text-align: left;
         width: 86%;
     }
 `

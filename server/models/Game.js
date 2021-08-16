@@ -6,6 +6,9 @@ const gameSchema = new Schema({
         type: String,
         required: true,
     },
+    gameTitle: {
+        type: String,
+    },
     score: {
         type: Number,
     },

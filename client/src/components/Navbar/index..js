@@ -43,11 +43,11 @@ const AppNavbar = () => {
                   </Link>
                   <Link to='/highscores'>
                     <NavLink>
-                      Highscores
+                      High Scores
                     </NavLink>
                   </Link>
                   {/* When the user clicks the logout button, the token is removed and they are logged out */}
-                  <Link onClick={Auth.logout}>
+                  <Link to='/' onClick={Auth.logout}>
                     <NavLink>
                       Logout
                     </NavLink>

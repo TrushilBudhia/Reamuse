@@ -10,6 +10,7 @@ export const GET_ME = gql`
       gameCount
       savedGamesData {
         gameId
+        gameTitle
         score
         highScore
         highScoreDate

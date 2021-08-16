@@ -210,7 +210,6 @@ export const ButtonMagenta = styled.button`
     display: block;
     font-size: 1.2rem;
     font-weight: 400;
-    // left: 28%;
     line-height: 1.5;
     margin: 0 auto;
     margin-top: 1.1rem;
