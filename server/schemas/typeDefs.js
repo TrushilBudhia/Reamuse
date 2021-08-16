@@ -12,6 +12,7 @@ const typeDefs = gql`
 
   type Game {
     gameId: String!
+    gameTitle: String
     score: Int
     highScore: Int
     highScoreDate: String
@@ -29,6 +30,7 @@ const typeDefs = gql`
 
   input GameInformation {
     gameId: String!
+    gameTitle: String
     score: Int
     highScore: Int
     highScoreDate: String

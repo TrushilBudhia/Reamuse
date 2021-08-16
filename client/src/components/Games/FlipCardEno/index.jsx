@@ -29,6 +29,7 @@ const FlipCardEno = () => {
     ];
 
     const reamuseGameId = 'flip-card-eno';
+    const reamuseGameTitle = 'Flip Card Eno';
 
     // Setting up useQuery
     const { data } = useQuery(GET_ME);
@@ -210,6 +211,7 @@ const FlipCardEno = () => {
         // const playCount = 2;
         const gameDataToAdd = {
             gameId: reamuseGameId,
+            gameTitle: reamuseGameTitle,
             score: Number(score),
             highScore: Number(highScore),
             highScoreDate: getDate(),
