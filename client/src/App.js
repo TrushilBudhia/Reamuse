@@ -8,6 +8,7 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 import FlipCardEno from './pages/FlipCardEno';
+import HighScores from './pages/HighScores';
 import { LightText, ContentContainer } from './styles/style.jsx'
 import { store } from './store';
 
@@ -49,7 +50,7 @@ function App() {
               <Route exact path='/loginsignup' component={Login} />
               <Route exact path='/dashboard' component={Dashboard} />
               <Route exact path='/flip-card-eno' component={FlipCardEno} />
-              {/* <Route exact path='/highscores' component={Highscores} /> */}
+              <Route exact path='/highscores' component={HighScores} />
               <Route render={() => <h1>
                 <ContentContainer>
                   <LightText>
