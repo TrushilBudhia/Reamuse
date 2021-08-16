@@ -29,10 +29,11 @@ The app was built using the MERN stack with a React and Redux front end, MongoDB
 2. [Usage](#usage)
 3. [Assets](#assets)
 4. [Technologies](#technologies)
-5. [License](#license)
-6. [Contributing](#contributing)
-7. [Tests](#tests)
-8. [Questions](#questions)
+5. [Planning](#planning)
+6. [License](#license)
+7. [Contributing](#contributing)
+8. [Tests](#tests)
+9. [Questions](#questions)
 
 ## Installation
 No installation is necessary to use the website.
