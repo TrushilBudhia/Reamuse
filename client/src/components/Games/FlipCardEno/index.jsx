@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useQuery, useMutation } from '@apollo/client';
-import Auth from '../../../utils/auth';
+// import Auth from '../../../utils/auth';
 import { getDate } from '../../../utils/helpers'
 import { UPDATE } from '../../../utils/mutations'
 import { saveGameDataIds, getSavedGamesDataIds } from '../../../utils/localStorage';
@@ -11,7 +11,6 @@ import GameOver from "./GameOver";
 import { ContentContainer, Header, Title, TitleHeader, GameSummary, GameTimer, TimeRemaining, Gameboard } from './FlipCardEno.styles'
 
 const FlipCardEno = () => {
-    
     // Declaring and assigning startTime variable and cards Array
     const startTime = 100;
     const cards = [
@@ -28,6 +27,8 @@ const FlipCardEno = () => {
         "flipcard-6b",
         "flipcard-6b"
     ];
+
+    const reamuseGameId = 'flip-card-eno';
 
     // Setting up useQuery
     const { data } = useQuery(GET_ME);
@@ -139,10 +140,10 @@ const FlipCardEno = () => {
         });
         setGameOver(done);
         if (gameOver) {
-            updateGameData();
             console.log('Update called');
             setScore(Number(document.querySelector(".countdown-timer").innerHTML));
             console.log('score', score);
+            updateGameData();
         }
     };
 
@@ -167,7 +168,7 @@ const FlipCardEno = () => {
     };
 
     // COUNTDOWN TIMER
-    const [time, setTime] = React.useState(startTime);
+    const [time, setTime] = useState(startTime);
     const CountDownTimer = () => {
 
         const tick = () => {
@@ -194,14 +195,21 @@ const FlipCardEno = () => {
         );
     }
 
+    // const gameDataArray = (userData.savedGamesData > 0) ? 
+    // userData.savedGamesData.filter((gameData) => gameData.gameId !== reamuseGameId) : [];
+    // console.log('userData.savedGamesData', userData.savedGamesData);
+    // console.log('gameDataArray', gameDataArray);
+
     const updateGameData = async () => {
         // Assigning score the value of the time remaining 
         const score = document.querySelector(".countdown-timer").innerHTML;
         const highScore = (userData.savedGamesData > 0) ?
             (userData.savedGamesaData.highScore > score) ? userData.savedGamesaData.highScore : score
             : score;
+
+        // const playCount = 2;
         const gameDataToAdd = {
-            gameId: 'flip-card-eno',
+            gameId: reamuseGameId,
             score: Number(score),
             highScore: Number(highScore),
             highScoreDate: getDate(),
@@ -220,11 +228,11 @@ const FlipCardEno = () => {
         });
 
         // Get token
-        const token = Auth.loggedIn() ? Auth.getToken() : null;
+        // const token = Auth.loggedIn() ? Auth.getToken() : null;
 
-        if (!token) {
-            return false;
-        }
+        // if (!token) {
+        //     return false;
+        // }
 
         try {
             // Adding code to execute asynchronous mutation function returned by `useMutation()` hook and pass in `variables` object
@@ -245,6 +253,13 @@ const FlipCardEno = () => {
             console.error(err);
         }
     };
+
+    // if (gameOver) {
+    //     console.log('Update called');
+    //     setScore(Number(document.querySelector(".countdown-timer").innerHTML));
+    //     console.log('score', score);
+    //     updateGameData();
+    // }
 
     return (
         <ContentContainer>
