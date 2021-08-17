@@ -228,15 +228,15 @@ const FlipCardEno = () => {
                 userData.savedGamesData.filter((gameData) => gameData.gameId === reamuseGameId)
                 : [];
             const sortedGameDataArray = gameDataArray.sort((a, b) => parseFloat(b.highScore) - parseFloat(a.highScore));
-            const highScore = sortedGameDataArray[0].highScore;
+            const highScore = Number(sortedGameDataArray[0].highScore);
             // Assigning score the value of the time remaining 
-            const score = document.querySelector(".countdown-timer").innerHTML;
+            const score = Number(document.querySelector(".countdown-timer").innerHTML);
 
             const gameDataToAdd = {
                 gameId: reamuseGameId,
                 gameTitle: reamuseGameTitle,
-                score: Number(score),
-                highScore: Number(highScore),
+                score: score,
+                highScore: (score > highScore) ? score : highScore,
                 highScoreDate: getDate(),
                 // playCount: (userData.savedGamesData > 0) ? userData.savedGamesaData.playCount + 1 : 0 + 1,
                 playCount: ((gameDataArray) ? gameDataArray.length + 1 : 1)

@@ -55,7 +55,7 @@ const GameOver = ({ restartGame, username, score, highScore, userData, addGameDa
                 </ButtonMagenta>
             </Link>}
             {/* Displaying current high score for the user for the game */}
-            {token && <HighscoreMessage>Current High Score: {(userData.length > 0) ? sortedFlipCardDataArray[0].highScore : score}</HighscoreMessage>}
+            {token && <HighscoreMessage>Current High Score: {(userData.savedGamesData.length > 0) ? sortedFlipCardDataArray[0].highScore : score}</HighscoreMessage>}
         </div>
     );
 };
