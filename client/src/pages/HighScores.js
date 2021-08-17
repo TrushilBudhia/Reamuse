@@ -20,7 +20,7 @@ const HighScores = () => {
     const sortedFlipCardDataArray = flipCardDataArray.sort((a, b) => parseFloat(b.highScore) - parseFloat(a.highScore));
     console.log('sortedFlipCardDataArray', sortedFlipCardDataArray);
 
-    // const highScoreValue = ;
+    const sortedFlipCardDataArrayPlayCount = flipCardDataArray.sort((a, b) => parseFloat(b.playCount) - parseFloat(a.playCount));
 
     // If data isn't here yet, display Loading
     if (loading) {
@@ -51,6 +51,12 @@ const HighScores = () => {
                         <TableCell>
                             <p>Date:</p>
                             <span>{sortedFlipCardDataArray[0].highScoreDate}</span>
+                        </TableCell>
+                    </TableContent>
+                    <TableContent>
+                        <TableCell>
+                            <p>Play Count:</p>
+                            <span>{sortedFlipCardDataArrayPlayCount[0].playCount}</span>
                         </TableCell>
                     </TableContent>
                 </HighScoresTable>
