@@ -35,6 +35,7 @@ const FlipCardEno = () => {
     const { data } = useQuery(GET_ME);
     const userData = data?.me || {};
     console.log('userData', userData);
+    console.log('userData.savedGamesData', userData.savedGamesData);
 
     // Updating user data
     const [userProfileData, setUserProfileData] = useState({
@@ -188,14 +189,44 @@ const FlipCardEno = () => {
         );
     }
 
+    const addGameData = async () => {
+        if (gameOver && token) {
+            const gameDataToAdd = {
+                gameId: reamuseGameId,
+                gameTitle: reamuseGameTitle,
+                score: Number(document.querySelector(".countdown-timer").innerHTML),
+                highScore: Number(document.querySelector(".countdown-timer").innerHTML),
+                highScoreDate: getDate(),
+                playCount: 1,
+            }
+            try {
+                // Adding code to execute asynchronous mutation function returned by `useMutation()` hook and pass in `variables` object
+                const data = await saveGameData({
+                    variables: {
+                        input: { ...gameDataToAdd }
+                    }
+                });
+                console.log('data', data)
+
+                if (error) {
+                    throw new Error('Something went wrong!');
+                }
+                setSavedGameDataIds([...savedGameDataIds, gameDataToAdd]);
+
+            } catch (err) {
+                console.error(err);
+            }
+        }
+    }
+
     const updateGameData = async () => {
         // Perform update function if game is over and user has a account token
         if (gameOver && token) {
             console.log('updateGameData entered');
             // Extracting the user highscore from the game data for the game
-            const gameDataArray = (userData.savedGamesData) ?
-            userData.savedGamesData.filter((gameData) => gameData.gameId === reamuseGameId)
-            : [];
+            const gameDataArray = (userData.savedGamesData !== [] || userData.savedGamesData !== undefined) ?
+                userData.savedGamesData.filter((gameData) => gameData.gameId === reamuseGameId)
+                : [];
             const sortedGameDataArray = gameDataArray.sort((a, b) => parseFloat(b.highScore) - parseFloat(a.highScore));
             const highScore = sortedGameDataArray[0].highScore;
             // Assigning score the value of the time remaining 
@@ -208,7 +239,7 @@ const FlipCardEno = () => {
                 highScore: Number(highScore),
                 highScoreDate: getDate(),
                 // playCount: (userData.savedGamesData > 0) ? userData.savedGamesaData.playCount + 1 : 0 + 1,
-                playCount: ((gameDataArray) ? gameDataArray.length + 1: 1)
+                playCount: ((gameDataArray) ? gameDataArray.length + 1 : 1)
             }
             console.log('gameDataToAdd', gameDataToAdd);
 
@@ -234,18 +265,23 @@ const FlipCardEno = () => {
                 if (error) {
                     throw new Error('Something went wrong!');
                 }
-                // If book successfully saves to user's account, save book id to state
                 setSavedGameDataIds([...savedGameDataIds, gameDataToAdd]);
 
             } catch (err) {
                 console.error(err);
             }
         }
-
     };
 
     // Get token
     const token = Auth.loggedIn() ? Auth.getToken() : null;
+
+
+    if (userData.savedGamesData === []) {
+        console.log('userData.savedGamesData.length', userData.savedGamesData.length);
+
+        // return userData.savedGamesData[userData.savedGamesData.length - 1].highScore;
+    }
 
     return (
         <ContentContainer>
@@ -255,10 +291,10 @@ const FlipCardEno = () => {
                         Flip Card Eno
                     </TitleHeader>
                 </Title>
-                <GameSummary>
+                <GameSummary className="game-info-paragraph">
                     The objective is to match pairs of cards until all have been flipped over and matched.
                 </GameSummary>
-                <GameSummary>
+                <GameSummary className="game-info-paragraph">
                     The amount of points you will achieve within the game will depend on the time you have left remaining upon completion of the challenge.
                 </GameSummary>
                 <TimeRemaining className="time-remaining">Time Remaining: {CountDownTimer()}</TimeRemaining>
@@ -280,7 +316,9 @@ const FlipCardEno = () => {
                     restartGame={restartGame}
                     username={userData.username}
                     score={document.querySelector(".countdown-timer").innerHTML}
-                    highscore={userData.savedGamesData[userData.savedGamesData.length - 1].highScore}
+                    highScore={document.querySelector(".countdown-timer").innerHTML}
+                    userData={userData}
+                    addGameData={addGameData}
                     updateGameData={updateGameData}
                 />}
             </Gameboard>
