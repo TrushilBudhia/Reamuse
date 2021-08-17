@@ -63,7 +63,7 @@ const HighScores = () => {
             </Header> :
                 <Header>
                     <Content>The stars have yet to align</Content>
-                    <Content>Work in progress...</Content>
+                    <Content>No high scores to display...</Content>
                 </Header>
             }
         </ContentContainer>
