@@ -1,12 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from 'react-router-dom';
 import Auth from '../../../utils/auth';
 import '../../../styles/style.css'
-import { VictoryMessage, ButtonMagenta } from './FlipCardEno.styles'
+import { VictoryMessage, HighscoreMessage, ButtonMagenta } from './FlipCardEno.styles'
 
-const GameOver = ({ restartGame, username, score }) => {
+const GameOver = ({ restartGame, username, score, highscore, updateGameData }) => {
     // Get token
     const token = Auth.loggedIn() ? Auth.getToken() : null;
+    // Calling the updateGameData function to add the game data to users saved game data array
+    useEffect(()=>{
+        console.log('useEffect entered');
+        updateGameData();
+    }, [])
 
     return (
         <div>
@@ -35,6 +40,8 @@ const GameOver = ({ restartGame, username, score }) => {
                     Login
                 </ButtonMagenta>
             </Link>}
+            {/* Displaying current high score for the user for the game */}
+            {token && <HighscoreMessage>Current High Score: {highscore}</HighscoreMessage>}
         </div>
     );
 };

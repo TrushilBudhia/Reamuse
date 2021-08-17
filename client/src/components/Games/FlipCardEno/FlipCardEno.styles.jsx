@@ -202,6 +202,18 @@ export const VictoryMessage = styled.h3`
     text-decoration: none;
 `
 
+// Highscore Message Styling
+export const HighscoreMessage = styled.p`
+    border: 1px solid #ffffff;
+    font-family: 'Rubik', sans-serif;
+    font-size: 1.5rem;
+    font-style: none;
+    margin: 2rem 0;
+    padding: 1rem 0rem;
+    text-align: center;
+    text-decoration: none;
+`
+
 export const ButtonMagenta = styled.button`
     background-color: #a7326c;
     border: 1px solid #9d1b5c;

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useQuery, useMutation } from '@apollo/client';
-// import Auth from '../../../utils/auth';
+import Auth from '../../../utils/auth';
 import { getDate } from '../../../utils/helpers'
 import { UPDATE } from '../../../utils/mutations'
 import { saveGameDataIds, getSavedGamesDataIds } from '../../../utils/localStorage';
@@ -35,7 +35,7 @@ const FlipCardEno = () => {
     const { data } = useQuery(GET_ME);
     const userData = data?.me || {};
     console.log('userData', userData);
-    
+
     // Updating user data
     const [userProfileData, setUserProfileData] = useState({
         _id: userData._id,
@@ -46,9 +46,7 @@ const FlipCardEno = () => {
         gameCount: userData.gameCount,
         savedGamesData: userData.savedGamesData,
     });
-    console.log('userProfileData1', userProfileData);
-
-    const [score, setScore] = useState(0);
+    // console.log('userProfileData', userProfileData);
 
     const [savedGameDataIds, setSavedGameDataIds] = useState(getSavedGamesDataIds);
     // Setting up mutation
@@ -140,12 +138,6 @@ const FlipCardEno = () => {
             if (!card.matched) done = false;
         });
         setGameOver(done);
-        if (gameOver) {
-            console.log('Update called');
-            setScore(Number(document.querySelector(".countdown-timer").innerHTML));
-            console.log('score', score);
-            updateGameData();
-        }
     };
 
     // RESTART - REDO SETUP
@@ -196,72 +188,64 @@ const FlipCardEno = () => {
         );
     }
 
-    // const gameDataArray = (userData.savedGamesData > 0) ? 
-    // userData.savedGamesData.filter((gameData) => gameData.gameId !== reamuseGameId) : [];
-    // console.log('userData.savedGamesData', userData.savedGamesData);
-    // console.log('gameDataArray', gameDataArray);
-
     const updateGameData = async () => {
-        // Assigning score the value of the time remaining 
-        const score = document.querySelector(".countdown-timer").innerHTML;
-        const highScore = (userData.savedGamesData > 0) ?
-            (userData.savedGamesaData.highScore > score) ? userData.savedGamesaData.highScore : score
-            : score;
+        // Perform update function if game is over and user has a account token
+        if (gameOver && token) {
+            console.log('updateGameData entered');
+            // Extracting the user highscore from the game data for the game
+            const gameDataArray = (userData.savedGamesData) ?
+            userData.savedGamesData.filter((gameData) => gameData.gameId === reamuseGameId)
+            : [];
+            const sortedGameDataArray = gameDataArray.sort((a, b) => parseFloat(b.highScore) - parseFloat(a.highScore));
+            const highScore = sortedGameDataArray[0].highScore;
+            // Assigning score the value of the time remaining 
+            const score = document.querySelector(".countdown-timer").innerHTML;
 
-        // const playCount = 2;
-        const gameDataToAdd = {
-            gameId: reamuseGameId,
-            gameTitle: reamuseGameTitle,
-            score: Number(score),
-            highScore: Number(highScore),
-            highScoreDate: getDate(),
-            playCount: (userData.savedGamesData > 0) ? userData.savedGamesaData.playCount + 1 : 0 + 1,
-        }
-        console.log('gameDataToAdd', gameDataToAdd);
-
-        // Updating user profile data - game count
-        setUserProfileData({
-            _id: userData._id,
-            email: userData.email,
-            username: userData.username,
-            userAvatar: userData.userAvatar,
-            gameCount: userData.gameCount + 1,
-            savedGamesData: [gameDataToAdd],
-        });
-
-        // Get token
-        // const token = Auth.loggedIn() ? Auth.getToken() : null;
-
-        // if (!token) {
-        //     return false;
-        // }
-
-        try {
-            // Adding code to execute asynchronous mutation function returned by `useMutation()` hook and pass in `variables` object
-            const data = await saveGameData({
-                variables: {
-                    input: { ...gameDataToAdd }
-                }
-            });
-            console.log('data', data)
-
-            if (error) {
-                throw new Error('Something went wrong!');
+            const gameDataToAdd = {
+                gameId: reamuseGameId,
+                gameTitle: reamuseGameTitle,
+                score: Number(score),
+                highScore: Number(highScore),
+                highScoreDate: getDate(),
+                // playCount: (userData.savedGamesData > 0) ? userData.savedGamesaData.playCount + 1 : 0 + 1,
+                playCount: ((gameDataArray) ? gameDataArray.length + 1: 1)
             }
-            // If book successfully saves to user's account, save book id to state
-            setSavedGameDataIds([...savedGameDataIds, gameDataToAdd]);
+            console.log('gameDataToAdd', gameDataToAdd);
 
-        } catch (err) {
-            console.error(err);
+            // Updating user profile data - game count
+            setUserProfileData({
+                _id: userData._id,
+                email: userData.email,
+                username: userData.username,
+                userAvatar: userData.userAvatar,
+                gameCount: userData.gameCount + 1,
+                savedGamesData: [gameDataToAdd],
+            });
+
+            try {
+                // Adding code to execute asynchronous mutation function returned by `useMutation()` hook and pass in `variables` object
+                const data = await saveGameData({
+                    variables: {
+                        input: { ...gameDataToAdd }
+                    }
+                });
+                console.log('data', data)
+
+                if (error) {
+                    throw new Error('Something went wrong!');
+                }
+                // If book successfully saves to user's account, save book id to state
+                setSavedGameDataIds([...savedGameDataIds, gameDataToAdd]);
+
+            } catch (err) {
+                console.error(err);
+            }
         }
+
     };
 
-    // if (gameOver) {
-    //     console.log('Update called');
-    //     setScore(Number(document.querySelector(".countdown-timer").innerHTML));
-    //     console.log('score', score);
-    //     updateGameData();
-    // }
+    // Get token
+    const token = Auth.loggedIn() ? Auth.getToken() : null;
 
     return (
         <ContentContainer>
@@ -296,7 +280,8 @@ const FlipCardEno = () => {
                     restartGame={restartGame}
                     username={userData.username}
                     score={document.querySelector(".countdown-timer").innerHTML}
-                    highscore={userData.highscore}
+                    highscore={userData.savedGamesData[userData.savedGamesData.length - 1].highScore}
+                    updateGameData={updateGameData}
                 />}
             </Gameboard>
         </ContentContainer>
